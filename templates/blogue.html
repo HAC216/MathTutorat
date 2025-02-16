@@ -1,0 +1,698 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr-FR" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Mon Site Local">
+    <meta property="og:description" content="Un site inspiré d'Avada, codé en local.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:url" content="https://mathtutorat.com/">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
+
+
+  <link href="https://mathtutorat.com/" hreflang="fr" rel="alternate"/>
+  <link href="https://mathtutorat.com/" hreflang="x-default" rel="alternate"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
+
+
+
+  <title>
+  Blogue
+  </title>
+
+
+  <meta content="Trouver un professeur de mathématiques. Mathématiques pour les élèves du secondaire, du primaire et des cégeps à la recherche d'aide en mathématiques. Réservez un professeur de mathématiques dès aujourd'hui !" name="description"/>
+  <link href="https://mathtutorat.com/" rel="canonical"/>
+  <meta content="fr_FR" property="og:locale"/>
+  <meta content="website" property="og:type"/>
+  <meta content="Math Tutorat - Aide en Mathématiques." property="og:title"/>
+  <meta content="Trouver un professeur de mathématiques. Mathématiques pour les élèves du secondaire, du primaire et des cégeps à la recherche d'aide en mathématiques. Réservez un professeur de mathématiques dès aujourd'hui !" property="og:description"/>
+  <meta content="https://mathtutorat.com/" property="og:url"/>
+  <meta content="MATH-TUTORAT" property="og:site_name"/>
+
+  <link href="{% static 'css/basic.min.css' %}" id="gform_basic-css" media="all" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'css/min.css' %}" id="fusion-dynamic-css-css" media="all" rel="stylesheet" type="text/css"/>
+
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+ <!-- Media Queries adaptés pour Avada -->
+<style>
+
+
+body {
+    padding-top: 50px; / Ajustez cette valeur en fonction de la hauteur du menu /
+}
+
+
+</style>
+
+
+
+ </head>
+
+
+ <body class="home page-template page-template-100-width page-template-100-width-php page page-id-12 fusion-image-hovers fusion-pagination-sizing fusion-button_type-flat fusion-button_span-no fusion-button_gradient-linear avada-image-rollover-circle-yes avada-image-rollover-no fusion-body ltr fusion-sticky-header no-mobile-slidingbar no-mobile-totop fusion-disable-outline fusion-sub-menu-fade mobile-logo-pos-left layout-wide-mode avada-has-boxed-modal-shadow-none layout-scroll-offset-full avada-has-zero-margin-offset-top fusion-top-header menu-text-align-center mobile-menu-design-modern fusion-show-pagination-text fusion-header-layout-v1 avada-responsive avada-footer-fx-none avada-menu-highlight-style-bottombar fusion-search-form-clean fusion-main-menu-search-overlay fusion-avatar-circle avada-dropdown-styles avada-blog-layout-large avada-blog-archive-layout-grid avada-header-shadow-no avada-menu-icon-position-left avada-has-megamenu-shadow avada-has-header-100-width avada-has-pagetitle-100-width avada-has-breadcrumb-mobile-hidden avada-has-titlebar-hide avada-header-border-color-full-transparent avada-has-pagination-width_height avada-flyout-menu-direction-fade avada-ec-views-v1" data-awb-post-id="12">
+
+  <div id="boxed-wrapper">
+
+   <div class="fusion-wrapper" id="wrapper">
+    <div id="home" style="position:relative;top:-1px;">
+    </div>
+
+     <header class="fusion-header-wrapper">
+     <div class="fusion-header-v1 fusion-logo-alignment fusion-logo-left fusion-sticky-menu- fusion-sticky-logo-1 fusion-mobile-logo-1 fusion-mobile-menu-design-modern">
+      <div class="fusion-header-sticky-height">
+      </div>
+      <div class="fusion-header" style="position: fixed; top: 0; left: 0;height: 12%; width: 100%; z-index: 9999; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+       <div class="fusion-row">
+        <div class="fusion-logo" data-margin-bottom="15px" data-margin-left="0px" data-margin-right="0px" data-margin-top="35px">
+         <a class="fusion-logo-link" href="https://mathtutorat.com">
+           <!-- standard logo -->
+           <img alt="MATH-TUTOR" class="fusion-standard-logo" data-retina_logo_url="" src="{% static 'images/mt-h-1.png'%}" style="height: 2rem;"/>
+
+           <!-- mobile logo -->
+           <img alt="MATH-TUTOR" class="fusion-mobile-logo" data-retina_logo_url="" src="{% static 'images/mt-h-1.png' %}" style="height: 2rem;"/>
+
+           <!-- sticky header logo -->
+           <img alt="MATH-TUTOR" class="fusion-sticky-logo" data-retina_logo_url="" src="{% static 'images/mt-h-1.png' %}" style="height: 2rem;"/>
+
+         </a>
+        </div>
+
+        <nav aria-label="Menu principal" class="fusion-main-menu">
+
+         <ul class="fusion-menu" id="menu-menu-principal">
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-12  menu-item-377" data-item-id="377" id="menu-item-377">
+           <a class="fusion-bottombar-highlight" href="https://mathtutorat.com/">
+            <span class="menu-text">
+             Accueil
+            </span>
+           </a>
+          </li>
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-379 fusion-dropdown-menu" data-item-id="379" id="menu-item-379">
+           <a class="fusion-bottombar-highlight" href="#">
+            <span class="menu-text">
+             Tutorat
+            </span>
+
+
+           </a>
+           <ul class="sub-menu">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-382 fusion-dropdown-submenu" id="menu-item-382">
+             <a class="fusion-bottombar-highlight" href="{% url 'tutoratPrive' %}">
+              <span>
+               Tutorat privé en mathématiques
+              </span>
+             </a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448 fusion-dropdown-submenu" id="menu-item-448">
+             <a class="fusion-bottombar-highlight" href="{% url 'tutoratSemiPrive' %}">
+              <span>
+               Tutorat semi-privé en mathématiques
+              </span>
+             </a>
+            </li>
+           </ul>
+          </li>
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381  fusion-dropdown-menu">
+           <a class="fusion-bottombar-highlight" href="{% url 'demanderTuteur' %}">
+            <span class="menu-text">
+             Demander un tuteur
+            </span>
+           </a>
+          </li>
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381 fusion-dropdown-menu">
+           <a class="fusion-bottombar-highlight" href="{% url 'devenirTuteur' %}">
+            <span class="menu-text">
+             Devenir un tuteur
+            </span>
+           </a>
+          </li>
+
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-380 fusion-dropdown-menu" data-item-id="380" id="menu-item-380">
+           <a class="fusion-bottombar-highlight" href="{% url 'about' %}">
+            <span class="menu-text">
+             À propos
+            </span>
+           </a>
+          </li>
+
+
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381 current_page_item  fusion-dropdown-menu">
+           <a class="fusion-bottombar-highlight" href="{% url 'blogue' %}">
+            <span class="menu-text">
+             Blogue
+            </span>
+           </a>
+          </li>
+
+         </ul>
+
+        </nav>
+
+
+
+
+        <div class="fusion-mobile-menu-icons">
+
+         <a aria-expanded="false" aria-label="Afficher/masquer le menu mobile" class="fusion-icon awb-icon-bars" href="#">
+         </a>
+
+        </div>
+
+        <nav aria-label="Menu principal mobile" class="fusion-mobile-nav-holder fusion-mobile-menu-text-align-left">
+        </nav>
+
+       </div>
+      </div>
+     </div>
+
+     <div class="fusion-clearfix">
+     </div>
+
+    </header>
+
+       <div class="post-content">
+
+  <main class="clearfix width-100" id="main">
+     <div class="fusion-row" style="max-width:100%;">
+      <section class="full-width" id="content">
+       <div class="post-457 page type-page status-publish hentry" id="post-457">
+        <span class="entry-title rich-snippet-hidden">
+         Blogue
+        </span>
+        <div class="post-content">
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-1 fusion-flex-container nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:150px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-0 fusion_builder_column_1_1 1_1 fusion-flex-column" style="--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:20px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-margin-bottom-small:0px;--awb-spacing-left-small:1.92%;">
+
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-title title fusion-title-1 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-two" style="--awb-text-color:#91c3ec;">
+              <h2 class="fusion-title-heading title-heading-center" style="margin:0;">
+               Blogue
+              </h2>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-2 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--link_hover_color: #648c44;--link_color: #3d3d3d;--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:0px;--awb-padding-right:180px;--awb-padding-bottom:50px;--awb-padding-left:180px;--awb-padding-top-medium:31px;--awb-padding-right-medium:50px;--awb-padding-left-medium:50px;--awb-padding-top-small:100px;--awb-padding-right-small:50px;--awb-padding-bottom-small:100px;--awb-padding-left-small:50px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-1 fusion_builder_column_1_1 1_1 fusion-flex-column fusion-flex-align-self-flex-start" style="--awb-padding-right:47px;--awb-padding-right-small:0px;--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:0%;--awb-margin-bottom-large:20px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:0%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-center fusion-content-layout-column">
+             <div class="fusion-blog-shortcode fusion-blog-shortcode-1 fusion-blog-archive fusion-blog-layout-grid-wrapper fusion-blog-pagination" style='--awb-title-font-size:20px;--awb-title-font-family:"Montserrat";--awb-title-font-style:normal;--awb-title-font-weight:800;'>
+              <style type="text/css">
+               .fusion-blog-shortcode-1 .fusion-blog-layout-grid .fusion-post-grid{padding:20px;}.fusion-blog-shortcode-1 .fusion-posts-container{margin-left: -20px !important; margin-right:-20px !important;}
+              </style>
+              <div class="fusion-posts-container fusion-posts-container-pagination fusion-blog-layout-grid fusion-blog-layout-grid-3 isotope fusion-blog-equal-heights" data-grid-col-space="40" data-pages="1" style="margin: -20px -20px 0;min-height:500px;">
+
+               <article class="fusion-post-grid post-1151 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1151">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="Comment les cours de mathématiques en ligne et en personne avec un tuteur maximisent votre apprentissage" >
+                      <img alt="" class="attachment-full size-full wp-post-image" decoding="async" fetchpriority="high" height="1707" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px" src="{% static 'images/fr-1.jpg' %}" width="2560"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                    L'importance du soutien scolaire en mathématiques : Comment un bon tutorat peut transformer l'apprentissage
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                     Les mathématiques sont souvent perçues comme une matière difficile, voire intimidante, par de nombreux élèves. Pourtant, elles sont essentielles dans la vie quotidienne et la réussite académique. Que ce soit pour résoudre des problèmes complexes en sciences, comprendre des concepts financiers ou même simplement faire face aux défis quotidiens, une solide maîtrise des mathématiques est un atout.
+
+Cependant, il est bien connu que certains élèves peuvent se sentir perdus en mathématiques. L'enseignement traditionnel en classe peut ne pas répondre à leurs besoins individuels, surtout s'ils ont des difficultés à suivre le rythme ou si les bases ne sont pas bien établies. C'est là qu'un tutorat personnalisé peut faire toute la différence.
+
+Un tuteur en mathématiques offre un accompagnement sur mesure, adapté aux besoins spécifiques de l'élève. Qu'il s'agisse de combler des lacunes, de renforcer des concepts déjà acquis ou de préparer des examens, le tutorat permet de progresser à son propre rythme et d'acquérir les compétences nécessaires pour réussir.
+
+Dans ce contexte, Math Tutor se distingue par son approche globale et personnalisée. Nos tuteurs ne se contentent pas d'expliquer les concepts ; ils enseignent aussi des stratégies d'apprentissage efficaces, renforcent la confiance en soi de l'élève et l'aident à surmonter les défis académiques. Un tutorat efficace peut transformer une expérience scolaire décourageante en un parcours de réussite et d'épanouissement.
+                    </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+               <article class="fusion-post-grid post-1142 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1142">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="Comment le Tutorat en Mathématiques Peut Aider les Enfants à Réussir">
+                      <img alt="" class="attachment-full size-full wp-post-image" decoding="async" height="1707" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static 'images/fr-2.jpg' %}"  width="2560"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                     Pourquoi chaque élève mérite un tutorat personnalisé en mathématiques
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                    Tous les élèves apprennent de manière différente. Certains peuvent saisir rapidement des concepts abstraits, tandis que d'autres peuvent avoir besoin de plus de temps et de soutien pour comprendre les mêmes notions. Cette différence d'approche est encore plus évidente dans une matière comme les mathématiques, qui repose sur des bases solides et une compréhension progressive des concepts.
+
+Le tutorat personnalisé permet de répondre directement aux besoins spécifiques de l'élève. Au lieu de suivre un programme standardisé qui peut ne pas correspondre aux difficultés ou aux forces individuelles de l’élève, le tutorat crée un environnement d’apprentissage dynamique où l’élève est au centre de son propre parcours. Grâce à cette approche, les élèves peuvent renforcer leurs points faibles et exploiter leurs points forts.
+
+Les avantages du tutorat personnalisé sont nombreux :<br>
+1. Un accompagnement sur mesure: Un tuteur dédié peut identifier rapidement les difficultés d'un élève et adapter son approche en fonction des besoins de l'élève.<br>
+2. Une amélioration de la confiance en soi : <br> Un suivi personnalisé permet à l’élève de progresser à son rythme, sans pression, ce qui renforce sa confiance en ses capacités.<br>
+3. Un soutien constant : <br> Le tutorat assure un soutien régulier, ce qui permet à l’élève de ne pas se laisser distancer, de mieux comprendre les sujets abordés et de réussir les évaluations.
+
+Chez Math Tutor, nous croyons que chaque élève mérite une approche personnalisée qui l'aidera à exceller en mathématiques et à surmonter ses défis.
+
+                    </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+               <article class="fusion-post-grid post-1118 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1118">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="L’Art d’Enseigner les Mathématiques" >
+                      <img alt="Apprentissage personnalisé des mathématiques à l'École Math Plus." class="attachment-full size-full wp-post-image" decoding="async" height="1000" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static  'images/fr-3.jpg'  %}" width="1500"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                    Comment le tutorat peut aider à surmonter les défis mathématiques au secondaire
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                    Le secondaire est une étape cruciale dans le parcours scolaire d’un élève, surtout en mathématiques. C’est à ce moment que les concepts deviennent plus complexes, et que de nombreux élèves peuvent se sentir dépassés. Les erreurs de compréhension commises au primaire peuvent se répercuter dans les années suivantes, créant des lacunes qui deviennent plus difficiles à combler.
+Les matières comme l'algèbre, la géométrie et le calcul peuvent être des obstacles majeurs pour certains élèves. Lorsque ces concepts ne sont pas maîtrisés, il devient plus difficile de suivre le programme et de réussir les évaluations. C'est là que le tutorat entre en jeu.
+
+Un tuteur qualifié peut travailler avec l’élève pour : <br>
+- Réexpliquer les concepts mathématiques de manière plus accessible.<br>
+- Aider à combler les lacunes en revenant sur les bases.<br>
+- Fournir un encadrement pour des révisions ciblées avant les examens.<br>
+- Proposer des exercices pratiques pour renforcer les compétences.
+
+Le tutorat est particulièrement efficace pour les élèves du secondaire qui ont besoin d'un soutien supplémentaire pour réussir les tests et les examens. En donnant aux élèves les outils et la confiance nécessaires pour comprendre les mathématiques, le tutorat contribue à des performances académiques optimales.
+
+Chez Math Tutor, nous offrons des séances de tutorat spécialisées pour le secondaire, où nos tuteurs qualifiés peuvent aider chaque élève à surmonter ses défis et à exceller.
+
+                    </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+
+
+               <article class="fusion-post-grid post-1151 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1151">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="Comment les cours de mathématiques en ligne et en personne avec un tuteur maximisent votre apprentissage">
+                      <img alt="" class="attachment-full size-full wp-post-image" decoding="async" fetchpriority="high" height="1707" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static  'images/fr-5.jpg'  %}"   width="2560"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                    Les avantages du tutorat en ligne : Flexibilité et sécurité pour une meilleure réussite
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                     Le tutorat en ligne est devenu une option populaire ces dernières années, en particulier avec l’évolution des technologies et les circonstances mondiales qui ont poussé de plus en plus d’élèves à chercher des solutions d’apprentissage à distance. Mais au-delà de la simple commodité, le tutorat en ligne offre de nombreux avantages qui peuvent transformer l’expérience d’apprentissage.
+
+Voici quelques raisons pour lesquelles le tutorat en ligne est un excellent choix :<br>
+
+1. Accessibilité : L’élève n’a pas besoin de se déplacer pour bénéficier d’un soutien scolaire de qualité. Que ce soit depuis la maison, un café ou ailleurs, les séances peuvent avoir lieu où l'élève est le plus à l'aise.<br>
+2. Flexibilité : Le tutorat en ligne permet de programmer des séances à des moments qui conviennent à l'élève, ce qui est particulièrement utile pour ceux qui ont des emplois du temps chargés.<br>
+3. Sécurité : Apprendre depuis chez soi présente un avantage considérable en termes de sécurité. Les élèves peuvent se concentrer pleinement sur leurs études sans avoir à se soucier des déplacements, tout en restant dans un environnement familier.<br>
+4. Technologie avancée : Le tutorat en ligne permet l’utilisation de nombreuses ressources interactives, comme des vidéos, des tableaux blancs numériques et des exercices en temps réel, qui rendent l'apprentissage plus engageant et efficace.
+
+Chez Math Tutor, nous proposons un tutorat en ligne adapté aux besoins de chaque élève. Grâce à nos plateformes sécurisées et à l’expertise de nos tuteurs, nous offrons un accompagnement de qualité, que ce soit pour des cours de mathématiques ou d’autres matières.
+                      </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+               <article class="fusion-post-grid post-1142 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1142">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="Comment le Tutorat en Mathématiques Peut Aider les Enfants à Réussir" >
+                      <img alt="" class="attachment-full size-full wp-post-image" decoding="async" height="1707" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static  'images/fr-6.jpg'  %}" width="2560"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                     Préparer un examen en mathématiques : Comment un tutorat efficace peut faire la différence
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                    Les examens peuvent être une source de stress importante pour les élèves, surtout en mathématiques. La préparation adéquate est essentielle pour aborder ces tests avec confiance. Pourtant, de nombreux élèves ne savent pas comment s’organiser ou comment aborder efficacement leurs révisions.
+
+Un tutorat en mathématiques ciblé peut jouer un rôle clé dans la préparation aux examens. Voici comment un tuteur peut aider un élève à se préparer de manière optimale : <br>
+- Révision des concepts clés : Un tuteur peut identifier les concepts qui posent problème et les revoir avec l'élève avant l'examen, assurant ainsi une bonne compréhension des points importants. <br>
+- Résolution d'exercices pratiques : La pratique régulière est essentielle pour maîtriser les mathématiques. Les tuteurs fournissent des exercices adaptés à l'examen pour renforcer les compétences et améliorer les résultats.<br>
+- Gestion du temps et de l'anxiété : Un tuteur peut aider l'élève à gérer son temps de manière efficace pendant l'examen et à adopter des stratégies pour réduire l'anxiété.<br>
+
+Le tutorat avant un examen de mathématiques permet non seulement d'acquérir des compétences techniques, mais aussi de développer une mentalité positive face aux défis académiques. En travaillant avec un tuteur qualifié, un élève peut se sentir plus préparé, plus confiant et prêt à réussir.
+
+Chez Math Tutor, nous offrons un accompagnement intensif pour les élèves qui se préparent à des examens de mathématiques. Grâce à nos méthodes personnalisées, nous aidons chaque élève à atteindre ses objectifs et à exceller lors de ses évaluations.
+
+                    </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+               <article class="fusion-post-grid post-1118 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1118">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="L’Art d’Enseigner les Mathématiques">
+                      <img alt="Apprentissage personnalisé des mathématiques à l'École Math Plus." class="attachment-full size-full wp-post-image" decoding="async" height="1000" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static 'images/fr-11.jpg'  %}"  width="1500"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                    Le nombre Pi : Une constante essentielle en mathématiques
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                    Le nombre Pi, souvent représenté par la lettre grecque π, est l'une des constantes les plus célèbres et les plus fascinantes des mathématiques. Il est omniprésent dans de nombreux domaines des mathématiques et des sciences appliquées, notamment dans les calculs géométriques et trigonométriques.
+
+Qu’est-ce que Pi ?
+
+Pi est défini comme le rapport entre la circonférence d’un cercle et son diamètre. En d’autres termes, si vous mesurez le diamètre d’un cercle, vous pouvez multiplier cette valeur par Pi pour obtenir la circonférence. Ce rapport est toujours constant, quelle que soit la taille du cercle. C'est pourquoi Pi est considéré comme une constante mathématique fondamentale.
+
+Bien que Pi soit un nombre irrationnel, ce qui signifie qu'il ne peut pas être exprimé sous forme de fraction exacte et que ses décimales s'étendent à l'infini, on le représente souvent de manière approximative par 3,14 ou même 22/7. Cependant, Pi possède des millions de décimales, ce qui le rend très intéressant pour les mathématiciens qui cherchent à le calculer de manière de plus en plus précise.
+
+Pi joue un rôle crucial dans la géométrie, le calcul intégral, ainsi que dans des domaines aussi variés que l'ingénierie, la physique, et même la musique. Sa présence dans ces multiples disciplines témoigne de l'importance de cette constante et de sa capacité à relier de nombreux concepts mathématiques entre eux.
+
+                    </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+
+               <article class="fusion-post-grid post-1151 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1151">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="Comment les cours de mathématiques en ligne et en personne avec un tuteur maximisent votre apprentissage">
+                      <img alt="" class="attachment-full size-full wp-post-image" decoding="async" fetchpriority="high" height="1707" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static  'images/fr-10.jpg'  %}"   width="2560"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                    Les suites arithmétiques : Comprendre l’évolution d’une séquence de nombres</p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                     Les suites arithmétiques sont des séquences de nombres dans lesquelles chaque terme est obtenu en ajoutant un nombre fixe au terme précédent. Ce type de suite est essentiel à la compréhension des progressions et intervient fréquemment dans les exercices de mathématiques, aussi bien au secondaire qu’au cégep.
+
+
+Applications des suites arithmétiques
+
+Les suites arithmétiques sont utilisées dans divers domaines des mathématiques, comme la finance pour calculer des intérêts simples, ou dans les sciences sociales pour modéliser des phénomènes où les valeurs augmentent ou diminuent de manière régulière. Voici quelques exemples : <br>
+- Problèmes financiers : Les paiements égaux effectués régulièrement (comme les remboursements d’un prêt) suivent une suite arithmétique.<br>
+- Moyennes et tendances : Dans les séries temporelles, une suite arithmétique peut être utilisée pour modéliser une tendance linéaire.<br>
+Les suites arithmétiques sont donc des outils puissants pour résoudre des problèmes pratiques et théoriques dans de nombreux domaines des mathématiques et des sciences.
+
+ </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+               <article class="fusion-post-grid post-1142 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classifiee-2" id="blog-1-post-1142">
+                <div class="fusion-post-wrapper" style="background-color:rgba(255,255,255,1);border:1px solid rgba(5,5,5,0.2);border-bottom-width:3px;">
+                 <div class="fusion-flexslider flexslider fusion-flexslider-loading fusion-post-slideshow" style="border-color:rgba(5,5,5,0.2);">
+                  <ul class="slides">
+                   <li>
+                    <div aria-haspopup="true" class="fusion-image-wrapper">
+                     <a aria-label="Comment le Tutorat en Mathématiques Peut Aider les Enfants à Réussir" >
+                      <img alt="" class="attachment-full size-full wp-post-image" decoding="async" height="1707" sizes="(min-width: 2200px) 100vw, (min-width: 784px) 373px, (min-width: 712px) 560px, (min-width: 640px) 712px, " src="{% static  'images/fr-8.jpg'  %}"  width="2560"/>
+                     </a>
+                    </div>
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="fusion-post-content-wrapper" style="padding:30px 25px 25px 25px;">
+                  <div class="fusion-post-content post-content">
+                   <h2 class="blog-shortcode-post-title entry-title">
+                    <p>
+                    Les dérivées : Un concept clé du calcul différentiel
+                    </p>
+                   </h2>
+                   <div class="fusion-content-sep sep-none">
+                   </div>
+                   <div class="fusion-post-content-container">
+                    <p>
+                    Les dérivées sont l'un des concepts les plus fondamentaux du calcul différentiel, une branche essentielle des mathématiques abordée au cégep et en université. Elles permettent de comprendre comment une fonction évolue, notamment comment une quantité change par rapport à une autre. Mais pourquoi et comment utiliser les dérivées ? Voici un aperçu de ce concept clé.
+
+Qu’est-ce qu’une dérivée ?
+
+La dérivée d’une fonction mesure le taux de variation de cette fonction. Autrement dit, elle nous dit à quel point la fonction change à un instant donné, ou pour une petite variation de sa variable. La dérivée peut être vue comme la pente de la tangente à la courbe de la fonction en un point donné.
+
+
+Une des premières applications des dérivées est la détermination de la pente d'une courbe à un point particulier. Par exemple, si une courbe représente la position d’un objet en fonction du temps, la dérivée de cette fonction représentera la vitesse de l’objet à chaque instant.
+
+Les dérivées sont aussi utilisées pour : <br>
+- Optimisation : <br> Trouver les maximums et minimums d’une fonction est une application classique des dérivées. Cela est crucial dans des domaines comme l'économie, où l'on cherche à maximiser les profits ou minimiser les coûts.</br>
+- Croissance et décroissance : <br> La dérivée permet d'analyser les zones de croissance ou de décroissance d’une fonction, un outil fondamental dans l’analyse des fonctions mathématiques.<br>
+- Prédictions : <br> En sciences physiques, les dérivées sont utilisées pour prédire des comportements futurs, comme la vitesse d’un objet ou le taux de variation d’une population.<br>
+La maîtrise des dérivées est essentielle non seulement en mathématiques, mais aussi dans des domaines appliqués comme la physique, la biologie, l’économie et l’ingénierie, où elles permettent de modéliser des phénomènes complexes et de prendre des décisions éclairées.
+
+                    </p>
+                   </div>
+                  </div>
+                 </div>
+                 <div class="fusion-clearfix">
+                 </div>
+                </div>
+               </article>
+
+
+
+
+               <div class="fusion-clearfix">
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </section>
+     </div>
+     <!-- fusion-row -->
+    </main>
+
+
+
+
+
+
+<footer style="background-color: #1f2937; color: white; padding: 24px 0; text-align: center;">
+  <p>&copy; 2024 math-tutor – Tous droits réservés</p>
+</footer>
+
+
+   </div>
+   <!-- wrapper -->
+  </div>
+  <!-- #boxed-wrapper -->
+
+  <div class="avada-footer-scripts">
+   <div class="awb-off-canvas-wrap type-popup overlay-disabled disable-close-on-esc" data-id="1046" id="awb-oc-1046" style="--awb-horizontal-position:flex-end;--awb-horizontal-position-medium:flex-end;--awb-horizontal-position-small:flex-end;--awb-vertical-position:flex-end;--awb-vertical-position-medium:flex-end;--awb-vertical-position-small:flex-end;--awb-width:200px;--awb-width-medium:200px;--awb-width-small:200px;--awb-margin-right:20px;--awb-margin-bottom:20px;--awb-background-color:rgba(0,0,0,0);--awb-content-layout:column;--awb-align-content:flex-end;--awb-valign-content:flex-start;--awb-content-wrap:wrap;--awb-close-icon-size:16px;">
+    <div class="awb-off-canvas" tabindex="-1">
+     <div class="awb-off-canvas-inner content-layout-column" style="">
+      <div class="off-canvas-content">
+       <div class="fusion-fullwidth fullwidth-box fusion-builder-row-20 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:0px;--awb-padding-right:0px;--awb-padding-bottom:0px;--awb-padding-left:0px;--awb-flex-wrap:wrap;">
+        <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+         <div class="fusion-layout-column fusion_builder_column fusion-builder-column-45 fusion_builder_column_1_1 1_1 fusion-flex-column" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+          <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+           <div style="text-align:center;">
+            <a class="fusion-button button-flat button-large button-custom fusion-button-default button-4 fusion-button-default-span fusion-button-default-type" href="tel:+15142382142" style="--button_accent_color:#ffffff;--button_border_color:#ffffff;--button_accent_hover_color:#ffffff;--button_border_hover_color:#ffffff;--button_gradient_top_color:#708ac7;--button_gradient_bottom_color:#5287ab;--button_gradient_top_color_hover:#4781a8;--button_gradient_bottom_color_hover:#5492c4;--button_typography-letter-spacing:1px;--button_margin-top:0px;--button_margin-right:0px;--button_margin-bottom:0px;--button_margin-left:0px;" target="_self">
+             <span class="fusion-button-text">
+              514-238-2142
+             </span>
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <script>
+    window.off_canvas_1046 = {"type":"popup","width":"200px","width_medium":"200px","width_small":"200px","height":"fit","custom_height":"","custom_height_medium":"","custom_height_small":"","horizontal_position":"flex-end","horizontal_position_medium":"flex-end","horizontal_position_small":"flex-end","vertical_position":"flex-end","vertical_position_medium":"flex-end","vertical_position_small":"flex-end","content_layout":"column","align_content":"flex-end","valign_content":"flex-start","content_wrap":"wrap","enter_animation":"slide","enter_animation_direction":"right","enter_animation_speed":0.5,"enter_animation_timing":"ease","exit_animation":"","exit_animation_direction":"static","exit_animation_speed":0.5,"exit_animation_timing":"ease","off_canvas_state":"opened","sb_height":"","position":"left","transition":"overlap","css_class":"","css_id":"","sb_enter_animation":"slideShort","sb_enter_animation_speed":0.5,"sb_enter_animation_timing":"ease","sb_exit_animation":"slideShort","sb_exit_animation_speed":0.5,"sb_exit_animation_timing":"ease","background_color":"rgba(0,0,0,0)","background_image":"","background_position":"left top","background_repeat":"repeat","background_size":"auto","background_custom_size":{"width":"","height":""},"background_blend_mode":"none","oc_scrollbar":"default","oc_scrollbar_background":"#f2f3f5","oc_scrollbar_handle_color":"#7fb2ef","margin":{"top":"","right":"20px","bottom":"20px","left":""},"padding":{"top":"","right":"","bottom":"","left":""},"box_shadow":"no","box_shadow_position":{"vertical":"","horizontal":""},"box_shadow_blur":"0","box_shadow_spread":"0","box_shadow_color":"","border_radius":{"top_left":"","top_right":"","bottom_right":"","bottom_left":""},"border_width":{"top":"","right":"","bottom":"","left":""},"border_color":"","overlay":"no","overlay_z_index":"","overlay_page_scrollbar":"yes","overlay_background_color":"rgba(0,0,0,0.8)","overlay_background_image":"","overlay_background_position":"left top","overlay_background_repeat":"repeat","overlay_background_size":"auto","overlay_background_custom_size":{"width":"","height":""},"overlay_background_blend_mode":"none","overlay_close_on_click":"yes","close_on_anchor_click":"no","close_on_esc":"no","auto_close_after_time":"","close_button":"no","close_button_position":"right","show_close_button_after_time":"","close_button_margin":{"top":"","right":"","bottom":"","left":""},"close_button_color":"","close_button_color_hover":"","close_icon_size":"16","close_button_custom_icon":"","on_page_load":"yes","time_on_page":"no","time_on_page_duration":"","on_scroll":"no","scroll_direction":"up","scroll_to":"position","scroll_position":"","scroll_element":"","on_click":"no","on_click_element":"","exit_intent":"no","after_inactivity":"no","inactivity_duration":"","on_add_to_cart":"no","publish_date_after":"","publish_date_until":"","frequency":"forever","frequency_xtimes":"","frequency_xdays":"","after_x_page_views":"no","number_of_page_views":"","after_x_sessions":"no","number_of_sessions":"","when_arriving_from":"","users":"all","users_roles":"","device":"","status_css_animations":"desktop","conditions_enabled":"yes","layout_conditions":"[]","dynamic_content_preview_type":"default","preview_post":"0","preview_avada_portfolio":"0","preview_avada_faq":"0","preview_archives":"post","has_js_rules":false};
+   </script>
+
+
+   <link href="{% static 'css/rs6.css' %}" id="rs-plugin-settings-css" media="all" rel="stylesheet" type="text/css">
+
+    <script async="" defer="" id="tp-tools-js" src="{% static 'js/rbtools.min.js' %}" type="text/javascript">
+    </script>
+    <script async="" defer="" id="revmin-js" src="{% static 'js/rs6.min.js' %}" type="text/javascript">
+    </script>
+
+   <script id="fusion-scripts-js" src="{% static 'js/fusion-script.js' %}" type="text/javascript">
+    </script>
+   <script id="rs-initialisation-scripts">
+     var tpj = jQuery;
+
+		var	revapi1;
+
+		if(window.RS_MODULES === undefined) window.RS_MODULES = {};
+		if(RS_MODULES.modules === undefined) RS_MODULES.modules = {};
+		RS_MODULES.modules["revslider11"] = {once: RS_MODULES.modules["revslider11"]!==undefined ? RS_MODULES.modules["revslider11"].once : undefined, init:function() {
+			window.revapi1 = window.revapi1===undefined || window.revapi1===null || window.revapi1.length===0  ? document.getElementById("rev_slider_1_1") : window.revapi1;
+			if(window.revapi1 === null || window.revapi1 === undefined || window.revapi1.length==0) { window.revapi1initTry = window.revapi1initTry ===undefined ? 0 : window.revapi1initTry+1; if (window.revapi1initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider11"].init()}); return;}
+			window.revapi1 = jQuery(window.revapi1);
+			if(window.revapi1.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_1_1"); return;}
+			revapi1.revolutionInit({
+					revapi:"revapi1",
+					DPR:"dpr",
+					sliderLayout:"fullwidth",
+					visibilityLevels:"1240,1024,1024,480",
+					gridwidth:"1240,1024,1024,480",
+					gridheight:"700,768,768,1000",
+					lazyType:"smart",
+					perspective:600,
+					perspectiveType:"global",
+					editorheight:"700,768,960,1000",
+					responsiveLevels:"1240,1024,1024,480",
+					progressBar:{disableProgressBar:true},
+					navigation: {
+						onHoverStop:false
+					},
+					viewPort: {
+						global:true,
+						globalDist:"-200px",
+						enable:false
+					},
+					fallbacks: {
+						allowHTML5AutoPlayOnAndroid:true
+					},
+			});
+
+		}} // End of RevInitScript
+
+		if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
+    </script>
+
+
+
+
+   </link>
+  </div>
+
+  </div>
+ </body>
+
+</html>

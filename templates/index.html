@@ -1,0 +1,1213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr-FR" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Mon Site Local">
+    <meta property="og:description" content="Un site inspiré d'Avada, codé en local.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:url" content="https://mathtutorat.com/">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
+
+
+  <link href="https://mathtutorat.com/" hreflang="fr" rel="alternate"/>
+  <link href="https://mathtutorat.com/" hreflang="x-default" rel="alternate"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
+
+
+
+  <title>
+   Math Tutor - Aide en Mathématiques.
+  </title>
+
+
+  <meta content="Trouver un professeur de mathématiques. Mathématiques pour les élèves du secondaire, du primaire et des cégeps à la recherche d'aide en mathématiques. Réservez un professeur de mathématiques dès aujourd'hui !" name="description"/>
+  <link href="https://mathtutorat.com/" rel="canonical"/>
+  <meta content="fr_FR" property="og:locale"/>
+  <meta content="website" property="og:type"/>
+  <meta content="Math Tutorat - Aide en Mathématiques." property="og:title"/>
+  <meta content="Trouver un professeur de mathématiques. Mathématiques pour les élèves du secondaire, du primaire et des cégeps à la recherche d'aide en mathématiques. Réservez un professeur de mathématiques dès aujourd'hui !" property="og:description"/>
+  <meta content="https://mathtutorat.com/" property="og:url"/>
+  <meta content="MATH-TUTORAT" property="og:site_name"/>
+
+  <link href="{% static 'css/basic.min.css' %}" id="gform_basic-css" media="all" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'css/min.css' %}" id="fusion-dynamic-css-css" media="all" rel="stylesheet" type="text/css"/>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+ <!-- Media Queries adaptés pour Avada -->
+<style>
+@media (max-width: 768px) {
+  .image-section {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .feature-image {
+    width: 50% !important;
+    max-width: 120px !important;
+  }
+
+  .learn-more {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .feature-image {
+    width: 70% !important;
+    max-width: 100px !important;
+  }
+
+  .learn-more {
+    font-size: 14px !important;
+  }
+}
+
+  /* Pour les petits écrans (tablettes et mobiles) */
+  @media (max-width: 768px) {
+    .fusion-layout-column .fusion_builder_column{
+      width: 100% !important; /* Passe chaque service en pleine largeur */
+      margin-bottom: 20px;
+    }
+
+    .fusion-flex-row {
+      flex-direction: column; /* Organise les services en colonne sur mobile */
+    }
+  }
+
+
+/* Ajouter un peu d'espace sous le menu pour qu'il ne cache pas le contenu */
+body {
+    padding-top: 50px; /* Ajustez cette valeur en fonction de la hauteur du menu */
+}
+
+
+</style>
+
+
+
+ </head>
+
+
+ <body class="home page-template page-template-100-width page-template-100-width-php page page-id-12 fusion-image-hovers fusion-pagination-sizing fusion-button_type-flat fusion-button_span-no fusion-button_gradient-linear avada-image-rollover-circle-yes avada-image-rollover-no fusion-body ltr fusion-sticky-header no-mobile-slidingbar no-mobile-totop fusion-disable-outline fusion-sub-menu-fade mobile-logo-pos-left layout-wide-mode avada-has-boxed-modal-shadow-none layout-scroll-offset-full avada-has-zero-margin-offset-top fusion-top-header menu-text-align-center mobile-menu-design-modern fusion-show-pagination-text fusion-header-layout-v1 avada-responsive avada-footer-fx-none avada-menu-highlight-style-bottombar fusion-search-form-clean fusion-main-menu-search-overlay fusion-avatar-circle avada-dropdown-styles avada-blog-layout-large avada-blog-archive-layout-grid avada-header-shadow-no avada-menu-icon-position-left avada-has-megamenu-shadow avada-has-header-100-width avada-has-pagetitle-100-width avada-has-breadcrumb-mobile-hidden avada-has-titlebar-hide avada-header-border-color-full-transparent avada-has-pagination-width_height avada-flyout-menu-direction-fade avada-ec-views-v1" data-awb-post-id="12">
+
+  <div id="boxed-wrapper">
+
+   <div class="fusion-wrapper" id="wrapper">
+    <div id="home" style="position:relative;top:-1px;">
+    </div>
+
+    <header class="fusion-header-wrapper">
+     <div class="fusion-header-v1 fusion-logo-alignment fusion-logo-left fusion-sticky-menu- fusion-sticky-logo-1 fusion-mobile-logo-1 fusion-mobile-menu-design-modern">
+      <div class="fusion-header-sticky-height">
+      </div>
+      <div class="fusion-header" style="position: fixed; top: 0; left: 0;height: 12%; width: 100%; z-index: 9999; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+       <div class="fusion-row">
+        <div class="fusion-logo" data-margin-bottom="15px" data-margin-left="0px" data-margin-right="0px" data-margin-top="35px">
+         <a class="fusion-logo-link" href="https://mathtutorat.com">
+           <!-- standard logo -->
+           <img alt="MATH-TUTOR" class="fusion-standard-logo" data-retina_logo_url="" src="{% static 'images/mt-h-1.png'%}" style="height: 2rem;"/>
+
+           <!-- mobile logo -->
+           <img alt="MATH-TUTOR" class="fusion-mobile-logo" data-retina_logo_url="" src="{% static 'images/mt-h-1.png' %}" style="height: 2rem;"/>
+
+           <!-- sticky header logo -->
+           <img alt="MATH-TUTOR" class="fusion-sticky-logo" data-retina_logo_url="" src="{% static 'images/mt-h-1.png' %}" style="height: 2rem;"/>
+
+         </a>
+        </div>
+
+        <nav aria-label="Menu principal" class="fusion-main-menu">
+
+         <ul class="fusion-menu" id="menu-menu-principal">
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-12 current_page_item menu-item-377" data-item-id="377" id="menu-item-377">
+           <a class="fusion-bottombar-highlight" href="https://mathtutorat.com/">
+            <span class="menu-text">
+             Accueil
+            </span>
+           </a>
+          </li>
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-379 fusion-dropdown-menu" data-item-id="379" id="menu-item-379">
+           <a class="fusion-bottombar-highlight" href="#">
+            <span class="menu-text">
+             Tutorat
+            </span>
+
+
+           </a>
+           <ul class="sub-menu">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-382 fusion-dropdown-submenu" id="menu-item-382">
+             <a class="fusion-bottombar-highlight" href="{% url 'tutoratPrive' %}">
+              <span>
+               Tutorat privé en mathématiques
+              </span>
+             </a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-448 fusion-dropdown-submenu" id="menu-item-448">
+             <a class="fusion-bottombar-highlight" href="{% url 'tutoratSemiPrive' %}">
+              <span>
+               Tutorat semi-privé en mathématiques
+              </span>
+             </a>
+            </li>
+           </ul>
+          </li>
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381 fusion-dropdown-menu">
+           <a class="fusion-bottombar-highlight" href="{% url 'demanderTuteur' %}">
+            <span class="menu-text">
+             Demander un tuteur
+            </span>
+           </a>
+          </li>
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381 fusion-dropdown-menu">
+           <a class="fusion-bottombar-highlight" href="{% url 'devenirTuteur' %}">
+            <span class="menu-text">
+             Devenir un tuteur
+            </span>
+           </a>
+          </li>
+
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-380 fusion-dropdown-menu" data-item-id="380" id="menu-item-380">
+           <a class="fusion-bottombar-highlight" href="{% url 'about' %}">
+            <span class="menu-text">
+             À propos
+            </span>
+           </a>
+          </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381 fusion-dropdown-menu">
+          <a class="fusion-bottombar-highlight" href="#tarif-section">
+            <span class="menu-text">
+              Tarif
+            </span>
+          </a>
+        </li>
+
+
+          <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-381 fusion-dropdown-menu">
+           <a class="fusion-bottombar-highlight" href="{% url 'blogue' %}">
+            <span class="menu-text">
+             Blogue
+            </span>
+           </a>
+          </li>
+
+         </ul>
+
+        </nav>
+
+
+
+
+        <div class="fusion-mobile-menu-icons">
+
+         <a aria-expanded="false" aria-label="Afficher/masquer le menu mobile" class="fusion-icon awb-icon-bars" href="#">
+         </a>
+
+        </div>
+
+        <nav aria-label="Menu principal mobile" class="fusion-mobile-nav-holder fusion-mobile-menu-text-align-left">
+        </nav>
+
+       </div>
+      </div>
+     </div>
+
+     <div class="fusion-clearfix">
+     </div>
+
+    </header>
+
+    <div class="fusion-slider-visibility" id="sliders-container">
+     <div class="fusion-slider-revolution rev_slider_wrapper">
+      <!-- START Slider 1 REVOLUTION SLIDER 6.7.23 -->
+      <p class="rs-p-wp-fix">
+      </p>
+      <rs-module-wrap data-source="gallery" id="rev_slider_1_1_wrapper" style="visibility:hidden;background:transparent;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
+       <rs-module data-version="6.7.23" id="rev_slider_1_1" style="">
+        <rs-slides style="overflow: hidden; position: absolute;">
+         <rs-slide data-in="o:0;" data-key="rs-1" data-out="a:false;" data-title="Slide" style="position: absolute;">
+          <img alt="tuteur en mathématiques" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="{% static 'images/rectangle-47.png' %}" data-no-retina="" height="1310"  title="tuteur en mathématiques" width="1941"/>
+          <!--
+-->
+          <rs-layer data-basealign="slide" data-color="#3d3d3d" data-dim="w:700px,526px,526px,412px;" data-frame_999="o:0;st:w;" data-rsp_ch="on" data-text="w:normal;s:54,40,40,32;l:58,43,43,34;ls:3,2,2,0;fw:800;a:left,left,left,center;" data-type="text" data-xy="x:l,l,l,c;xo:180px,148px,148px,0;yo:234px,193px,193px,97px;" id="slider-1-slide-1-layer-0" style="z-index:7;font-family:'Montserrat';">
+           Progressez en Math avec un tutorat de qualité
+           <br/>
+          </rs-layer>
+          <!--
+-->
+          <rs-layer data-basealign="slide" data-color="#3d3d3d" data-dim="w:617px,433px,433px,394px;" data-frame_999="o:0;st:w;" data-rsp_ch="on" data-text="w:normal;s:19,15,15,24;l:24,19,19,30;ls:2,1,1,0;fw:800;a:left,left,left,center;" data-type="text" data-xy="x:l,l,l,c;xo:183px,151px,151px,0;y:m;yo:121px,-4px,-4px,-221px;" id="slider-1-slide-1-layer-1" style="z-index:6;font-family:'Montserrat';">
+           Tutorat en mathématiques adapté à tous les niveaux.  La première séance est offerte !
+           <br/>
+          </rs-layer>
+          <!--
+-->
+
+
+          <a class="rs-layer rev-btn" data-basealign="slide" data-dim="w:257px,212px,212px,250px;h:46px,37px,37px,50px;minh:0px,none,0px,none;" data-frame_0="x:0,0,0,0px;y:0,0,0,0px;" data-frame_1="x:0,0,0,0px;y:0,0,0,0px;" data-frame_999="o:0;st:w;" data-frame_hover="bgc:#397285;bor:0px,0px,0px,0px;bri:120%;" data-padding="t:3,2,2,3;r:25,21,21,28;b:3,2,2,3;l:25,21,21,28;" data-rsp_ch="on" data-text="w:normal;s:13,10,10,12;l:40,33,33,44;ls:2px,1px,1px,2px;fw:800;a:center;" data-type="button" data-xy="x:l,l,l,c;xo:184px,155px,155px,0;yo:544px,445px,445px,359px;" href="{% url 'demanderTuteur' %}" id="slider-1-slide-1-layer-2" style="z-index:8;background-color:#4dbee1;font-family:'Montserrat';text-transform:uppercase;" target="_self">
+           Réserver un tuteur
+          </a>
+          <!--
+-->
+
+          <rs-layer data-basealign="slide" data-dim="w:476px,393px,393px,432px;h:600px,495px,495px,545px;" data-frame_999="o:0;st:w;" data-rsp_ch="on" data-text="w:normal;s:20,16,16,7;l:0,20,20,9;" data-type="image" data-xy="x:r,r,r,c;xo:0,0,0,31px;yo:95px,78px,78px,436px;" id="slider-1-slide-1-layer-3" style="z-index:9;">
+           <img alt="tuteurs en mathématiques" class="tp-rs-img rs-lazyload" data-lazyload="{% static 'images/fr-15.png' %}" data-no-retina="" height="1049" width="832"/>
+          </rs-layer>
+
+          <!--
+-->
+         </rs-slide>
+        </rs-slides>
+       </rs-module>
+
+      </rs-module-wrap>
+      <!-- END REVOLUTION SLIDER -->
+     </div>
+    </div>
+
+
+
+    <main class="clearfix width-100" id="main">
+     <div class="fusion-row" style="max-width:100%;">
+      <section class="full-width" id="content">
+       <div class="post-12 page type-page status-publish hentry" id="post-12">
+        <span class="entry-title rich-snippet-hidden">
+         Accueil
+        </span>
+
+        <div class="post-content">
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-1 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:39px;--awb-padding-right:180px;--awb-padding-bottom:0px;--awb-padding-left:180px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:50px;--awb-padding-right-small:30px;--awb-padding-bottom-small:50px;--awb-padding-left-small:30px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-justify-content-center fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-0 fusion_builder_column_1_1 1_1 fusion-flex-column fusion-flex-align-self-stretch" style="--awb-padding-top:70px;--awb-padding-right:210px;--awb-padding-bottom:60px;--awb-padding-left:210px;--awb-padding-right-medium:101px;--awb-padding-left-medium:100px;--awb-padding-right-small:30px;--awb-padding-left-small:30px;--awb-bg-color:#e5f7ff;--awb-bg-color-hover:#ebf4ff;--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-title title fusion-title-1 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-two" style="--awb-margin-top:0px;--awb-margin-bottom:0px;">
+              <h2 class="fusion-title-heading title-heading-center" style="margin:0;">
+               Contactez-nous
+              </h2>
+             </div>
+             <div class="fusion-separator" style="align-self: center;margin-left: auto;margin-right: auto;margin-top:30px;margin-bottom:40px;width:100%;max-width:10%;">
+              <div class="fusion-separator-border sep-single sep-solid" style="--awb-height:20px;--awb-amount:20px;--awb-sep-color:#92dbf6;border-color: #92dbf6;border-top-width:4px;">
+              </div>
+             </div>
+             <div class="gf_browser_unknown gform_wrapper gravity-theme gform-theme--no-framework" data-form-index="0" data-form-theme="gravity-theme" id="gform_wrapper_1">
+              <div class="gform_anchor" id="gf_1" tabindex="-1">
+              </div>
+              <div class="gform_heading">
+              </div>
+
+            <form id="contact-form" action="{% url 'apiContact' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+               <div class="gform-body gform_body">
+                <div class="gform_fields top_label form_sublabel_below description_below validation_below" id="gform_fields_1">
+                 <div class="gfield gfield--type-text gfield--input-type-text gfield--width-half gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible" data-js-reload="field_1_1" id="field_1_1">
+                  <label class="gfield_label gform-field-label" for="input_1_1">
+                   Prénom
+                   <span class="gfield_required">
+                    <span class="gfield_required gfield_required_asterisk">
+                     *
+                    </span>
+                   </span>
+                  </label>
+                  <div class="ginput_container ginput_container_text">
+                   <input aria-invalid="false" aria-required="true" class="large" id="input_1_1" name="input_1" placeholder="Prénom*" type="text" value=""/>
+                  </div>
+                 </div>
+                 <div class="gfield gfield--type-text gfield--input-type-text gfield--width-half gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible" data-js-reload="field_1_2" id="field_1_2">
+                  <label class="gfield_label gform-field-label" for="input_1_2">
+                   Nom
+                   <span class="gfield_required">
+                    <span class="gfield_required gfield_required_asterisk">
+                     *
+                    </span>
+                   </span>
+                  </label>
+                  <div class="ginput_container ginput_container_text">
+                   <input aria-invalid="false" aria-required="true" class="large" id="input_1_2" name="input_2" placeholder="Nom*" type="text" value=""/>
+                  </div>
+                 </div>
+                 <div class="gfield gfield--type-email gfield--input-type-email gfield--width-full gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible" data-js-reload="field_1_3" id="field_1_3">
+                  <label class="gfield_label gform-field-label" for="input_1_3">
+                   Courriel
+                   <span class="gfield_required">
+                    <span class="gfield_required gfield_required_asterisk">
+                     *
+                    </span>
+                   </span>
+                  </label>
+                  <div class="ginput_container ginput_container_email">
+                   <input aria-invalid="false" aria-required="true" class="large" id="input_1_3" name="input_3" placeholder="Courriel*" type="email" value=""/>
+                  </div>
+                 </div>
+                 <div class="gfield gfield--type-phone gfield--input-type-phone gfield--width-full phone-input gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible" data-js-reload="field_1_4" id="field_1_4">
+                  <label class="gfield_label gform-field-label" for="input_1_4">
+                   Téléphone
+                   <span class="gfield_required">
+                    <span class="gfield_required gfield_required_asterisk">
+                     *
+                    </span>
+                   </span>
+                  </label>
+                  <div class="ginput_container ginput_container_phone">
+                   <input aria-invalid="false" aria-required="true" class="large" id="input_1_4" name="input_4" placeholder="Téléphone*" type="tel" value=""/>
+                  </div>
+                 </div>
+                 <div class="gfield gfield--type-textarea gfield--input-type-textarea gfield--width-full field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible" data-js-reload="field_1_5" id="field_1_5">
+                  <label class="gfield_label gform-field-label" for="input_1_5">
+                   Message
+                  </label>
+                  <div class="ginput_container ginput_container_textarea">
+                   <textarea aria-invalid="false" class="textarea small" cols="50" id="input_1_5" name="input_5" placeholder="Message" rows="10"></textarea>
+                  </div>
+                 </div>
+                 <div class="gfield gfield--type-honeypot gform_validation_container field_sublabel_below gfield--has-description field_description_below field_validation_below gfield_visibility_visible" data-js-reload="field_1_7" id="field_1_7">
+                  <label class="gfield_label gform-field-label" for="input_1_7">
+                   Phone
+                  </label>
+                  <div class="ginput_container">
+                   <input autocomplete="new-password" id="input_1_7" name="input_7" type="text" value=""/>
+                  </div>
+                  <div class="gfield_description" id="gfield_description_1_7">
+                   Ce champ n’est utilisé qu’à des fins de validation et devrait rester inchangé.
+                  </div>
+                 </div>
+                </div>
+               </div>
+
+             </br>
+
+               <div class="fusion-text fusion-text-1 fusion-text-no-margin" style="--awb-margin-bottom:0px;">
+                <p>
+                 <strong>
+                  N'hésitez pas à nous laisser un message, nous vous contacterons sous 24 heures.
+                 </strong>
+                </p>
+               </div>
+
+             </br>
+               <div class="gform-footer gform_footer top_label text-center">
+                   <input class="gform_button button" id="gform_submit_button_1" type="submit" value="ENVOYER"/>
+               </div>
+
+
+
+              </form>
+
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+
+
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-2 fusion-flex-container has-pattern-background has-mask-background hundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:100px;--awb-padding-right:150px;--awb-padding-bottom:66px;--awb-padding-left:0px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:50px;--awb-padding-right-small:30px;--awb-padding-bottom-small:17px;--awb-padding-left-small:30px;--awb-flex-wrap:wrap;">
+
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-justify-content-center fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+
+
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-2 fusion_builder_column_1_2 1_2 fusion-flex-column fusion-flex-align-self-stretch" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-padding-left:45px;--awb-padding-left-small:0px;--awb-bg-size:cover;--awb-width-large:50%;--awb-margin-top-large:0px;--awb-spacing-right-large:3.84%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:3.84%;--awb-width-medium:50%;--awb-order-medium:0;--awb-spacing-right-medium:3.84%;--awb-spacing-left-medium:3.84%;--awb-width-small:100%;--awb-order-small:0;--awb-margin-top-small:45px;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-center fusion-content-layout-column">
+
+             <div class="fusion-title title fusion-title-2 fusion-sep-none fusion-title-text fusion-title-size-two" style="--awb-margin-top:0px;--awb-margin-bottom:0px;">
+
+              <h2 class="fusion-title-heading title-heading-center" style="margin:0;">
+              Pourquoi choisir Math Tutor ?
+              </h2>
+
+             </div>
+
+             <div class="fusion-separator" style="align-self: flex-start;margin-right:auto;margin-top:20px;margin-bottom:20px;width:100%;max-width:10%;">
+              <div class="fusion-separator-border sep-single sep-solid" style="--awb-height:20px;--awb-amount:20px;--awb-sep-color: #92dbf6;border-color: #92dbf6;border-top-width:4px;">
+              </div>
+             </div>
+             <div class="fusion-text fusion-text-1 fusion-text-no-margin" style="--awb-margin-bottom:0px;">
+              <p>
+               <strong>
+                         Chez Math Tutor, nos professeurs de mathématiques qualifiés sont dédiés à la réussite de chaque élève.
+               </strong>
+
+              </p>
+
+              <p>
+               <strong>
+                Que ce soit en séances individuelles ou en petits groupes, nous personnalisons notre approche en fonction du style d'apprentissage de chacun.
+               </strong>
+                </p>
+              <p>
+               <strong>
+                Nous offrons un soutien sur mesure, en ligne ou en présentiel, pour les élèves du primaire, du secondaire et du cégep.
+               </strong>
+                </p>
+              <p>
+               <strong>
+                Contactez-nous dès aujourd'hui pour bénéficier de notre aide en mathématiques, que ce soit pour vous ou votre enfant.
+               </strong>
+                 </p>
+             </div>
+            </div>
+           </div>
+          </div>
+
+         </div>
+
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-3 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:100px;--awb-padding-right:250px;--awb-padding-bottom:305px;--awb-padding-left:250px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:50px;--awb-padding-right-small:30px;--awb-padding-bottom-small:76px;--awb-padding-left-small:30px;--awb-background-color:#f0fcff;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-3 fusion_builder_column_1_1 1_1 fusion-flex-column" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-z-index:1;--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-title title fusion-title-3 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-two" style="--awb-margin-top:0px;--awb-margin-bottom:0px;">
+              <h2 class="fusion-title-heading title-heading-center" style="margin:0;">
+               Services de tutorat en mathématiques
+              </h2>
+             </div>
+             <div class="fusion-separator" style="align-self: center;margin-left: auto;margin-right: auto;margin-top:20px;margin-bottom:20px;width:100%;max-width:7%;">
+              <div class="fusion-separator-border sep-single sep-solid" style="--awb-height:20px;--awb-amount:20px;--awb-sep-color: #92dbf6;border-color: #92dbf6;border-top-width:5px;">
+              </div>
+             </div>
+            </div>
+           </div>
+
+
+
+           <div id="tarif-section" class="fusion-layout-column fusion_builder_column fusion-builder-column-4 fusion_builder_column_1_2 1_2 fusion-flex-column fusion-flex-align-self-stretch reascol" style="--awb-z-index-hover:10;--awb-overflow:hidden;--awb-bg-color:rgba(255,255,255,0);--awb-bg-color-hover:rgba(255,255,255,0);--awb-bg-size:cover;--awb-border-radius:0px 0px 32px 32px;--awb-width-large:50%;--awb-margin-top-large:0px;--awb-spacing-right-large:6.72%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:6.72%;--awb-width-medium:50%;--awb-order-medium:0;--awb-spacing-right-medium:6.72%;--awb-spacing-left-medium:6.72%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-margin-bottom-small:50px;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-image-element" style="text-align:center;--awb-margin-bottom:5px;--awb-max-width:125px  ">
+              <span class="fusion-imageframe imageframe-none imageframe-2 hover-type-none reasimg" style="z-index:999;">
+               <img alt="Cours privés en maths à Montréal" class="img-responsive wp-image-552" decoding="async" height="187" sizes="(max-width: 187px) 100vw, 187px" src="{% static 'images/Group-612.png' %}" title="Cours particulier" width="187"/>
+              </span>
+             </div>
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-0 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:38px;--awb-padding-right:20px;--awb-padding-bottom:20px;--awb-padding-left:20px;--awb-overflow:visible;--awb-bg-color:#518fd5;--awb-bg-color-hover:#4d93da;--awb-bg-image:linear-gradient(30deg, #59a2d5 28%,#778bea 75%);--awb-bg-size:cover;--awb-border-radius:32px 32px 0px 0px;--awb-width-large:100%;--awb-margin-top-large:-55px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-4 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#ffffff;--awb-margin-top:0px;--awb-margin-bottom:0px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;letter-spacing:2px;text-transform:uppercase;line-height:1.6;'>
+                  Cours particulier
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-1 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-bottom:1px;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-5 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:5px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  35 $ de l’heure
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-2 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-bottom:1px;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-6 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  Tutorat en personne
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-3 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-7 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  En tête-à-tête
+                 </h3>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-5 fusion_builder_column_1_2 1_2 fusion-flex-column fusion-flex-align-self-stretch reascol" style="--awb-z-index-hover:10;--awb-overflow:hidden;--awb-bg-color:rgba(255,255,255,0);--awb-bg-color-hover:rgba(255,255,255,0);--awb-bg-size:cover;--awb-border-radius:0px 0px 32px 32px;--awb-width-large:50%;--awb-margin-top-large:0px;--awb-spacing-right-large:6.72%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:6.72%;--awb-width-medium:50%;--awb-order-medium:0;--awb-spacing-right-medium:6.72%;--awb-spacing-left-medium:6.72%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-margin-bottom-small:50px;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-image-element" style="text-align:center;--awb-margin-bottom:5px;--awb-max-width:125px                    ">
+              <span class="fusion-imageframe imageframe-none imageframe-3 hover-type-none reasimg" style="z-index:999;">
+               <img alt="Tuteurs en maths en ligne" class="img-responsive wp-image-550" decoding="async" height="187" sizes="(max-width: 187px) 100vw, 187px"  src="{% static 'images/Group-613.png' %}"  title="Tutorat en ligne" width="187"/>
+              </span>
+             </div>
+
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-0 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:38px;--awb-padding-right:20px;--awb-padding-bottom:20px;--awb-padding-left:20px;--awb-overflow:visible;--awb-bg-color:#518fd5;--awb-bg-color-hover:#4d93da;--awb-bg-image:linear-gradient(30deg, #59a2d5 28%,#778bea 75%);--awb-bg-size:cover;--awb-border-radius:32px 32px 0px 0px;--awb-width-large:100%;--awb-margin-top-large:-55px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-8 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#ffffff;--awb-margin-top:0px;--awb-margin-bottom:0px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;letter-spacing:2px;text-transform:uppercase;line-height:1.6;'>
+                  Tutorat en ligne
+                 </h3>
+                </div>
+               </div>
+              </div>
+
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-5 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-bottom:1px;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-9 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:5px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  35 $ de l’heure
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-6 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-bottom:1px;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-10 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  Tutorat en ligne
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-7 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-11 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  En tête-à-tête
+                 </h3>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-6 fusion_builder_column_1_1 1_1 fusion-flex-column fusion-no-small-visibility" style="--awb-z-index:1;--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-separator fusion-full-width-sep" style="align-self: center;margin-left: auto;margin-right: auto;margin-bottom:40px;width:100%;">
+             </div>
+            </div>
+           </div>
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-7 fusion_builder_column_1_2 1_2 fusion-flex-column fusion-flex-align-self-stretch reascol" style="--awb-z-index-hover:10;--awb-overflow:hidden;--awb-bg-color:rgba(255,255,255,0);--awb-bg-color-hover:rgba(255,255,255,0);--awb-bg-size:cover;--awb-border-radius:0px 0px 32px 32px;--awb-width-large:50%;--awb-margin-top-large:0px;--awb-spacing-right-large:6.72%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:6.72%;--awb-width-medium:50%;--awb-order-medium:0;--awb-spacing-right-medium:6.72%;--awb-spacing-left-medium:6.72%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-margin-bottom-small:50px;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-image-element" style="text-align:center;--awb-margin-bottom:5px;--awb-max-width:125px                    ">
+              <span class="fusion-imageframe imageframe-none imageframe-4 hover-type-none reasimg" style="z-index:999;">
+               <img alt="cours individuels en maths" class="img-responsive wp-image-555" decoding="async" height="187" sizes="(max-width: 187px) 100vw, 187px" src="{% static 'images/Group-614.png' %}"   title="Cours particuliers semi-privés" width="187"/>
+              </span>
+             </div>
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-0 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:38px;--awb-padding-right:20px;--awb-padding-bottom:20px;--awb-padding-left:20px;--awb-overflow:visible;--awb-bg-color:#518fd5;--awb-bg-color-hover:#4d93da;--awb-bg-image:linear-gradient(30deg, #59a2d5 28%,#778bea 75%);--awb-bg-size:cover;--awb-border-radius:32px 32px 0px 0px;--awb-width-large:100%;--awb-margin-top-large:-55px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-12 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#ffffff;--awb-margin-top:0px;--awb-margin-bottom:0px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;letter-spacing:2px;text-transform:uppercase;line-height:1.6;'>
+                  Cours particuliers
+                  <br/>
+                  semi-privés
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-9 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-bottom:1px;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-13 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:5px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  25 $ de l’heure
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-10 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-bottom:1px;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-14 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  Tutorat en personne
+                 </h3>
+                </div>
+               </div>
+              </div>
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-11 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-z-index:999;--awb-padding-top:18px;--awb-padding-right:20px;--awb-padding-bottom:18px;--awb-padding-left:20px;--awb-bg-color:#ffffff;--awb-bg-color-hover:#ffffff;--awb-bg-size:cover;--awb-border-color:#bcbcbc;--awb-border-style:solid;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-15 fusion-sep-none fusion-title-center fusion-title-text fusion-title-size-three" style="--awb-text-color:#676767;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-center" style='font-family:"Montserrat";font-style:normal;font-weight:600;margin:0;font-size:1em;letter-spacing:1px;'>
+                  Petit groupe jusqu’à 4 étudiants
+                 </h3>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+
+
+
+
+          </div>
+         </div>
+
+
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-4 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--link_hover_color: #4582f5;--link_color: #5fcbf3;--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:0px;--awb-padding-right:180px;--awb-padding-bottom:0px;--awb-padding-left:180px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:50px;--awb-padding-right-small:30px;--awb-padding-bottom-small:0px;--awb-padding-left-small:30px;--awb-margin-bottom:0px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-11 fusion_builder_column_1_1 1_1 fusion-flex-column" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-padding-top:334px;--awb-padding-right:40px;--awb-padding-bottom:60px;--awb-padding-left:61px;--awb-padding-top-small:166px;--awb-padding-right-small:31px;--awb-padding-left-small:30px;--awb-bg-position:right bottom;--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:-190px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-margin-top-small:-100px;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column fusion-column-has-bg-image">
+             <div class="fusion-title title fusion-title-28 fusion-sep-none fusion-title-text fusion-title-size-two" style="--awb-text-color:#ffffff;--awb-margin-top:0px;--awb-margin-bottom:0px;">
+              <h2 class="fusion-title-heading title-heading-left" style="margin:0;">
+               <p>
+                Planifiez une séance dès maintenant
+                <br/>
+                APPELEZ-NOUS AU :
+                <a href="tel:+15142382142">
+                 514-238-2142
+                </a>
+               </p>
+              </h2>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-5 fusion-flex-container has-pattern-background has-mask-background hundred-percent-fullwidth non-hundred-percent-height-scrolling fusion-custom-z-index" style="--link_hover_color: #6fd3e8;--link_color: #63b6e1;--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-z-index:0;--awb-padding-top:0px;--awb-padding-right:0px;--awb-padding-bottom:0px;--awb-padding-left:0px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:0px;--awb-padding-right-small:30px;--awb-padding-bottom-small:0px;--awb-padding-left-small:30px;--awb-margin-top:-90px;--awb-margin-top-small:0px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-12 fusion_builder_column_1_1 1_1 fusion-flex-column" style="--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-image-element" style="">
+              <span class="fusion-imageframe imageframe-none imageframe-8 hover-type-none">
+               <img alt="aide avec les devoirs pour mon enfant" class="img-responsive wp-image-200" decoding="async" height="238" src="{% static 'images/fr-16.jpg'%}" title="mon enfant a besoin de l’aide à l’école" width="1920"/>
+              </span>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-6 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:32px;--awb-padding-right:0px;--awb-padding-bottom:0px;--awb-padding-left:180px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:50px;--awb-padding-right-small:30px;--awb-padding-bottom-small:6px;--awb-padding-left-small:30px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-13 fusion_builder_column_1_2 1_2 fusion-flex-column" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-bg-size:cover;--awb-width-large:50%;--awb-margin-top-large:0px;--awb-spacing-right-large:12.864%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:3.84%;--awb-width-medium:50%;--awb-order-medium:0;--awb-spacing-right-medium:12.864%;--awb-spacing-left-medium:3.84%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-title title fusion-title-29 fusion-sep-none fusion-title-text fusion-title-size-two" style="--awb-margin-top:0px;--awb-margin-bottom:0px;">
+              <h2 class="fusion-title-heading title-heading-left" style="margin:0;">
+               Notre apporche pour révéler tout leur potentiel
+              </h2>
+             </div>
+             <div class="fusion-separator" style="align-self: flex-start;margin-right:auto;margin-top:30px;margin-bottom:45px;width:100%;max-width:9%;">
+              <div class="fusion-separator-border sep-single sep-solid" style="--awb-height:20px;--awb-amount:20px;--awb-sep-color: #92dbf6;border-color: #92dbf6;border-top-width:5px;">
+              </div>
+             </div>
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-24 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:30px;--awb-padding-right:40px;--awb-padding-bottom:30px;--awb-padding-left:40px;--awb-overflow:hidden;--awb-bg-size:cover;--awb-box-shadow:3px 2px 27px -5px rgba(0,0,0,0.37);;--awb-border-radius:32px 32px 32px 32px;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-30 fusion-sep-none fusion-title-text fusion-title-size-three" style="--awb-text-color:#000000;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-left" style='font-family:"Montserrat";font-style:normal;font-weight:700;margin:0;font-size:1em;letter-spacing:4px;text-transform:uppercase;line-height:1.6;'>
+                  <table>
+                   <tbody>
+                    <tr>
+                     <td style="font-size: 70px; font-weight: 800; color: #7ed7f6;" width="105px">
+                      1
+                     </td>
+                     <td style="padding-left: 0px; padding-right: 20px; line-height: 1.4; letter-spacing: normal;" width="1200">
+                      Une préparation optimale pour maximiser les progrès
+                     </td>
+                    </tr>
+                   </tbody>
+                  </table>
+                 </h3>
+                </div>
+                <ul class="fusion-checklist fusion-checklist-1 type-icons" style="--awb-size:18px;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-item-padding-top:0px;--awb-item-padding-bottom:10px;--awb-iconcolor:#7ed7f6;--awb-line-height:30.6px;--awb-icon-width:30.6px;--awb-icon-height:30.6px;--awb-icon-margin:12.6px;--awb-content-margin:43.2px;">
+                 <li class="fusion-li-item" style="">
+                  <span class="icon-wrapper circle-no">
+
+             <i aria-hidden="true" class="fusion-li-icon fas fa-circle-plus"></i>
+
+                  </span>
+                  <div class="fusion-li-item-content">
+                   <p>
+                          Qu'il s'agisse de <strong>comprendre les bases</strong>, de <strong>résoudre des problèmes</strong>, ou d'<strong>explorer les fonctions</strong>,
+      nos tuteurs possèdent une expertise exceptionnelle et une expérience approfondie en mathématiques afin de <strong>faciliter l’apprentissage</strong> de chaque élève.
+                   </p>
+                  </div>
+                 </li>
+                </ul>
+               </div>
+              </div>
+             </div>
+             <div class="fusion-separator fusion-full-width-sep" style="align-self: center;margin-left: auto;margin-right: auto;margin-bottom:50px;width:100%;">
+             </div>
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-25 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:30px;--awb-padding-right:40px;--awb-padding-bottom:30px;--awb-padding-left:40px;--awb-overflow:hidden;--awb-bg-size:cover;--awb-box-shadow:3px 2px 27px -5px rgba(0,0,0,0.37);;--awb-border-radius:32px 32px 32px 32px;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-31 fusion-sep-none fusion-title-text fusion-title-size-three" style="--awb-text-color:#000000;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-left" style='font-family:"Montserrat";font-style:normal;font-weight:700;margin:0;font-size:1em;letter-spacing:4px;text-transform:uppercase;line-height:1.6;'>
+                  <table>
+                   <tbody>
+                    <tr>
+                     <td style="font-size: 70px; font-weight: 800; color: #7ed7f6;" width="105px">
+                      2
+                     </td>
+                     <td style="padding-left: 0px; padding-right: 20px; line-height: 1.4; letter-spacing: normal;" width="1200">
+                      Des suivis précis pour mesurer les progrès avec clarté
+                     </td>
+                    </tr>
+                   </tbody>
+                  </table>
+                 </h3>
+                </div>
+                <ul class="fusion-checklist fusion-checklist-2 type-icons" style="--awb-size:18px;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-item-padding-top:0px;--awb-item-padding-bottom:10px;--awb-iconcolor:#7ed7f6;--awb-line-height:30.6px;--awb-icon-width:30.6px;--awb-icon-height:30.6px;--awb-icon-margin:12.6px;--awb-content-margin:43.2px;">
+                 <li class="fusion-li-item" style="">
+                  <span class="icon-wrapper circle-no">
+                   <i aria-hidden="true" class="fusion-li-icon fas fa-circle-plus">
+                   </i>
+                  </span>
+                  <div class="fusion-li-item-content">
+                   <p>
+                    Nos cours en ligne combinent <strong>collaboration</strong> et <strong>attention individuelle</strong>.
+      Chaque élève bénéficie d’un <strong>suivi adapté</strong> à ses besoins spécifiques.
+      Un <strong>rapport détaillé</strong> est fourni après chaque bloc de 12 heures, mettant en lumière les progrès réalisés et les points à améliorer,
+      pour un <strong>suivi clair et efficace</strong>.
+                   </p>
+                  </div>
+                 </li>
+
+                </ul>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-14 fusion_builder_column_1_2 1_2 fusion-flex-column fusion-flex-align-self-stretch" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-bg-size:cover;--awb-width-large:50%;--awb-margin-top-large:0px;--awb-spacing-right-large:3.84%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:3.84%;--awb-width-medium:50%;--awb-order-medium:0;--awb-spacing-right-medium:3.84%;--awb-spacing-left-medium:3.84%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+
+            </div>
+           </div>
+          </div>
+
+         </div>
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-7 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling fusion-custom-z-index" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-z-index:2;--awb-padding-top:44px;--awb-padding-right:180px;--awb-padding-bottom:90px;--awb-padding-left:0px;--awb-padding-right-medium:70px;--awb-padding-left-medium:70px;--awb-padding-top-small:15px;--awb-padding-right-small:30px;--awb-padding-bottom-small:50px;--awb-padding-left-small:30px;--awb-flex-wrap:wrap;">
+          <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-15 fusion-flex-column fusion-flex-align-self-stretch" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-z-index:99;--awb-bg-size:cover;--awb-width-large:55%;--awb-margin-top-large:0px;--awb-spacing-right-large:0%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:3.4909090909091%;--awb-width-medium:55%;--awb-order-medium:0;--awb-spacing-right-medium:0%;--awb-spacing-left-medium:3.4909090909091%;--awb-width-small:100%;--awb-order-small:1;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-end fusion-content-layout-column">
+            </div>
+           </div>
+           <div class="fusion-layout-column fusion_builder_column fusion-builder-column-16 fusion-flex-column" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-bg-size:cover;--awb-width-large:45%;--awb-margin-top-large:0px;--awb-spacing-right-large:4.2666666666667%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:7.68%;--awb-width-medium:45%;--awb-order-medium:0;--awb-spacing-right-medium:4.2666666666667%;--awb-spacing-left-medium:7.68%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+            <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-26 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:30px;--awb-padding-right:40px;--awb-padding-bottom:30px;--awb-padding-left:40px;--awb-overflow:hidden;--awb-bg-size:cover;--awb-box-shadow:3px 2px 27px -5px rgba(0,0,0,0.37);;--awb-border-radius:32px 32px 32px 32px;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-32 fusion-sep-none fusion-title-text fusion-title-size-three" style="--awb-text-color:#000000;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-left" style='font-family:"Montserrat";font-style:normal;font-weight:700;margin:0;font-size:1em;letter-spacing:4px;text-transform:uppercase;line-height:1.6;'>
+                  <table>
+                   <tbody>
+                    <tr>
+                     <td style="font-size: 70px; font-weight: 800; color: #7ed7f6;" width="105px">
+                      3
+                     </td>
+                     <td style="padding-left: 0px; padding-right: 20px; line-height: 1.4; letter-spacing: normal;" width="1200">
+                      Des cours en groupe pour développer des compétences clés
+                     </td>
+                    </tr>
+                   </tbody>
+                  </table>
+                 </h3>
+                </div>
+                <ul class="fusion-checklist fusion-checklist-3 type-icons" style="--awb-size:18px;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-item-padding-top:0px;--awb-item-padding-bottom:10px;--awb-iconcolor:#7ed7f6;--awb-line-height:30.6px;--awb-icon-width:30.6px;--awb-icon-height:30.6px;--awb-icon-margin:12.6px;--awb-content-margin:43.2px;">
+                 <li class="fusion-li-item" style="">
+                  <span class="icon-wrapper circle-no">
+                   <i aria-hidden="true" class="fusion-li-icon fas fa-circle-plus">
+                   </i>
+                  </span>
+                  <div class="fusion-li-item-content">
+                   <p>
+                    Apprendre en groupe, c’est bien plus qu’étudier ensemble : c’est se préparer à réussir.
+      De nombreux examens, projets et situations académiques, notamment au secondaire et au cégep, reposent sur des <strong>dynamiques de groupe</strong>.
+      Nos cours offrent aux élèves une opportunité précieuse d’<strong>acquérir cette compétence</strong>, demandée en classe.
+                   </p>
+                  </div>
+                 </li>
+                </ul>
+               </div>
+              </div>
+             </div>
+             <div class="fusion-separator fusion-full-width-sep" style="align-self: center;margin-left: auto;margin-right: auto;margin-bottom:40px;width:100%;">
+             </div>
+             <div class="fusion-builder-row fusion-builder-row-inner fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="width:104% !important;max-width:104% !important;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+              <div class="fusion-layout-column fusion_builder_column_inner fusion-builder-nested-column-27 fusion_builder_column_inner_1_1 1_1 fusion-flex-column" style="--awb-padding-top:30px;--awb-padding-right:40px;--awb-padding-bottom:30px;--awb-padding-left:40px;--awb-overflow:hidden;--awb-bg-size:cover;--awb-box-shadow:3px 2px 27px -5px rgba(0,0,0,0.37);;--awb-border-radius:32px 32px 32px 32px;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+               <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-title title fusion-title-33 fusion-sep-none fusion-title-text fusion-title-size-three" style="--awb-text-color:#000000;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-font-size:17px;">
+                 <h3 class="fusion-title-heading title-heading-left" style='font-family:"Montserrat";font-style:normal;font-weight:700;margin:0;font-size:1em;letter-spacing:4px;text-transform:uppercase;line-height:1.6;'>
+                  <table>
+                   <tbody>
+                    <tr>
+                     <td style="font-size: 70px; font-weight: 800; color: #7ed7f6;" width="105px">
+                      4
+                     </td>
+                     <td style="padding-left: 0px; padding-right: 20px; line-height: 1.4; letter-spacing: normal;" width="1200" >
+                      Le tutorat à petit prix pour les familles !
+                     </td>
+                    </tr>
+                   </tbody>
+                  </table>
+                 </h3>
+                </div>
+                <ul class="fusion-checklist fusion-checklist-4 type-icons" style="--awb-size:18px;--awb-margin-top:0px;--awb-margin-bottom:0px;--awb-item-padding-top:0px;--awb-item-padding-bottom:10px;--awb-iconcolor:#7ed7f6;--awb-line-height:30.6px;--awb-icon-width:30.6px;--awb-icon-height:30.6px;--awb-icon-margin:12.6px;--awb-content-margin:43.2px;">
+                 <li class="fusion-li-item" style="">
+                  <span class="icon-wrapper circle-no">
+                   <i aria-hidden="true" class="fusion-li-icon fas fa-circle-plus">
+                   </i>
+                  </span>
+                  <div class="fusion-li-item-content">
+                   <p>
+                    Offrez à votre enfant une qualité d’enseignement exceptionnelle <strong>sans dépasser votre budget</strong>.
+      Nos cours en ligne sont une <strong>solution économique et efficace</strong>, idéale pour renforcer ses compétences tout en maîtrisant les coûts.
+
+                   </p>
+                  </div>
+                 </li>
+                </ul>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-9 fusion-flex-container" style="background-color: #ffffff; padding-top: 50px; padding-bottom: 50px;">
+  <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px; margin-left: calc(-4% / 2 ); margin-right: calc(-4% / 2 );">
+
+    <div class="fusion-layout-column fusion_builder_column fusion-builder-column-19 fusion-flex-column" style="width:100%; padding-right: 4.27%; padding-left: 4.27%; padding-bottom: 0px;">
+      <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+
+        <!-- Title Section -->
+        <div class="fusion-title title fusion-title-35 fusion-sep-none fusion-title-text fusion-title-size-two">
+          <h2 class="fusion-title-heading title-heading-left" style="color: #1c3d70;">
+            Nos services
+          </h2>
+        </div>
+
+        <div class="fusion-separator" style="margin-top:30px; margin-bottom:30px; width:100%; max-width:10%;">
+          <div class="fusion-separator-border sep-single sep-solid" style="height:20px; border-color: #92dbf6; border-top-width:4px;"></div>
+        </div>
+
+        <!-- Service Section -->
+        <div class="fusion-text fusion-text-3 fusion-text-no-margin">
+          <div class="fusion-flex-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="flex-wrap: wrap; justify-content: center;">
+
+            <!-- Service 1 -->
+            <div class="fusion-layout-column fusion_builder_column fusion-builder-column-1 fusion-flex-column" style="width:33%; padding-right: 3.49%; padding-left: 3.49%; margin-bottom: 30px; text-align: center;">
+              <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #007bff; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+                  <i class="fas fa-chalkboard-teacher" style="font-size: 24px;"></i>
+                </div>
+                <h3 class="fusion-title-heading" style="color: #1c3d70; font-size: 1.25rem; font-weight: bold; margin-top: 15px; letter-spacing: normal;">
+                  Rattrapage scolaire
+                </h3>
+                <p class="fusion-text" style="color: #595959;">
+                  Revoir les notions non maîtrisées et combler les lacunes grâce à une approche collective et interactive.
+                </p>
+              </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="fusion-layout-column fusion_builder_column fusion-builder-column-2 fusion-flex-column" style="width:33%; padding-right: 3.49%; padding-left: 3.49%; margin-bottom: 30px; text-align: center;">
+              <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #007bff; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+                  <i class="fas fa-book-open" style="font-size: 24px;"></i>
+                </div>
+                <h3 class="fusion-title-heading" style="color: #1c3d70; font-size: 1.25rem; font-weight: bold; margin-top: 15px; letter-spacing: normal;;">
+                  Préparation aux examens
+                </h3>
+                <p class="fusion-text" style="color: #595959;">
+                  Exercices ciblés et simulations pour renforcer la confiance et la performance.
+                </p>
+              </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="fusion-layout-column fusion_builder_column fusion-builder-column-3 fusion-flex-column" style="width:33%; padding-right: 3.49%; padding-left: 3.49%; margin-bottom: 30px; text-align: center;">
+              <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #007bff; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+                  <i class="fas fa-pencil-alt" style="font-size: 24px;"></i>
+                </div>
+                <h3 class="fusion-title-heading" style="color: #1c3d70; font-size: 1.25rem; font-weight: bold; margin-top: 15px; letter-spacing: normal;">
+                  Aide aux devoirs
+                </h3>
+                <p class="fusion-text" style="color: #595959;">
+                  Un accompagnement pas à pas pour aider les élèves à surmonter les difficultés immédiates.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+         <div class="fusion-fullwidth fullwidth-box fusion-builder-row-9 fusion-flex-container" style="background-color: #ffffff; padding-top: 50px; padding-bottom: 50px;">
+  <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px; margin-left: calc(-4% / 2 ); margin-right: calc(-4% / 2 );">
+
+    <div class="fusion-layout-column fusion_builder_column fusion-builder-column-19 fusion-flex-column" style="width:100%; padding-right: 4.27%; padding-left: 4.27%; padding-bottom: 0px;">
+      <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+
+        <!-- Title Section -->
+        <div class="fusion-title title fusion-title-35 fusion-sep-none fusion-title-text fusion-title-size-two">
+          <h2 class="fusion-title-heading title-heading-left" style="color: #1c3d70;">
+            Commencez rapidement et simplement
+          </h2>
+        </div>
+
+        <div class="fusion-separator" style="margin-top:30px; margin-bottom:30px; width:100%; max-width:10%;">
+          <div class="fusion-separator-border sep-single sep-solid" style="height:20px; border-color:#97def1; border-top-width:4px;"></div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="fusion-text fusion-text-3 fusion-text-no-margin">
+          <div class="fusion-flex-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="flex-wrap: wrap; justify-content: center;">
+
+            <!-- Steps Section -->
+            <div class="fusion-layout-column fusion_builder_column fusion-builder-column-1 fusion-flex-column" style="width:50%; padding-right: 3.49%; padding-left: 3.49%; margin-bottom: 30px; text-align: left;">
+              <ol class="fusion-text" style="color: #595959; list-style-type: none; padding-left: 0;">
+                <li class="fusion-text" style="margin-bottom: 20px;">
+                  <span class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #007bff; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center;">
+                    <span style="font-weight: bold; font-size: 18px;">1</span>
+                  </span>
+                  <span>Contactez-nous pour définir les besoins et disponibilités de votre enfant.</span>
+                </li>
+                <li class="fusion-text" style="margin-bottom: 20px;">
+                  <span class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #007bff; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center;">
+                    <span style="font-weight: bold; font-size: 18px;">2</span>
+                  </span>
+                  <span>Nous le jumelons a un tuteur.</span>
+                </li>
+                <li class="fusion-text" style="margin-bottom: 20px;">
+                  <span class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #007bff; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center;">
+                    <span style="font-weight: bold; font-size: 18px;">3</span>
+                  </span>
+                  <span>Vous commencez les séances de tutorat.</span>
+                </li>
+              </ol>
+            </div>
+
+            <!-- Phone Section -->
+            <div class="fusion-layout-column fusion_builder_column fusion-builder-column-2 fusion-flex-column" style="width:50%; padding-right: 3.49%; padding-left: 3.49%; margin-bottom: 30px; text-align: center;">
+              <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+                <div class="fusion-icon-wrapper fusion-icon-size-2" style="width: 56px; height: 56px; background-color: #2d2d2d; border-radius: 50%; color: #ffffff; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+                  <i class="fas fa-phone" style="font-size: 24px;"></i>
+                </div>
+                <div class="fusion-text" style="color: #595959; margin-top: 20px;">
+                  <p>Composez le</p>
+                  <h3 style="color: #007bff; font-weight: bold; letter-spacing: normal;">1 514-238-2142</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+             <div class="fusion-separator fusion-full-width-sep" style="align-self: center;margin-left: auto;margin-right: auto;margin-bottom:8px;width:100%;">
+             </div>
+
+
+        </div>
+       </div>
+      </section>
+     </div>
+     <!-- fusion-row -->
+    </main>
+
+
+<section class="fusion-fullwidth fullwidth-box image-section"
+  style="display: flex; align-items: center; justify-content: center; flex-direction: column;
+         padding-top: 80px; padding-bottom: 80px; background-color: #eefbff; text-align: center;">
+
+  <div class="fusion-builder-row fusion-row"
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+
+    <div class="fusion-layout-column fusion_builder_column fusion-builder-column-1_1 1_1 fusion-flex-column"
+      style="display: flex; flex-direction: column; align-items: center; text-align: center;
+             max-width: 600px; margin: 0 auto;">
+
+      <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-center">
+
+        <!-- Image centrée -->
+        <img src="{% static 'images/feature-1.png' %}" alt="Illustration" class="fusion-image feature-image"
+          style="display: block; margin: 0 auto 40px auto; width: 30%; height: auto; max-width: 150px;" />
+
+        <!-- Bouton centré -->
+        <div class="fusion-text fusion-text-no-margin">
+          <a href="https://www.bestinmtl.com/best-tutoring-services-montreal/" class="fusion-button learn-more"
+            style="color: #2563eb; font-size: 18px; text-decoration: none; font-weight: bold; display: inline-block;
+                   padding: 12px 24px; border: 2px solid #2563eb; border-radius: 8px;
+                   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;">
+            En savoir plus
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<footer style="background-color: #1f2937; color: white; padding: 24px 0; text-align: center;">
+
+   <div>
+    <a href="https://www.instagram.com" target="_blank" style="color: white; margin: 0 10px; text-decoration: none;">
+      <i class="fab fa-instagram" style="font-size: 24px;"></i>
+    </a>
+    <a href="https://www.facebook.com/share/169CVXirw5/?mibextid=wwXIfr" target="_blank" style="color: white; margin: 0 10px; text-decoration: none;">
+      <i class="fab fa-facebook" style="font-size: 24px;"></i>
+    </a>
+  </div>
+  <p>&copy; 2024 math-tutor – Tous droits réservés</p>
+
+</footer>
+
+
+   </div>
+   <!-- wrapper -->
+  </div>
+  <!-- #boxed-wrapper -->
+
+  <div class="avada-footer-scripts">
+   <div class="awb-off-canvas-wrap type-popup overlay-disabled disable-close-on-esc" data-id="1046" id="awb-oc-1046" style="--awb-horizontal-position:flex-end;--awb-horizontal-position-medium:flex-end;--awb-horizontal-position-small:flex-end;--awb-vertical-position:flex-end;--awb-vertical-position-medium:flex-end;--awb-vertical-position-small:flex-end;--awb-width:200px;--awb-width-medium:200px;--awb-width-small:200px;--awb-margin-right:20px;--awb-margin-bottom:20px;--awb-background-color:rgba(0,0,0,0);--awb-content-layout:column;--awb-align-content:flex-end;--awb-valign-content:flex-start;--awb-content-wrap:wrap;--awb-close-icon-size:16px;">
+    <div class="awb-off-canvas" tabindex="-1">
+     <div class="awb-off-canvas-inner content-layout-column" style="">
+      <div class="off-canvas-content">
+       <div class="fusion-fullwidth fullwidth-box fusion-builder-row-20 fusion-flex-container has-pattern-background has-mask-background nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-padding-top:0px;--awb-padding-right:0px;--awb-padding-bottom:0px;--awb-padding-left:0px;--awb-flex-wrap:wrap;">
+        <div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );">
+         <div class="fusion-layout-column fusion_builder_column fusion-builder-column-45 fusion_builder_column_1_1 1_1 fusion-flex-column" data-scroll-devices="small-visibility,medium-visibility,large-visibility" style="--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-order-medium:0;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-order-small:0;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;">
+          <div class="fusion-column-wrapper fusion-column-has-shadow fusion-flex-justify-content-flex-start fusion-content-layout-column">
+           <div style="text-align:center;">
+            <a class="fusion-button button-flat button-large button-custom fusion-button-default button-4 fusion-button-default-span fusion-button-default-type" href="tel:+15142382142" style="--button_accent_color:#ffffff;--button_border_color:#ffffff;--button_accent_hover_color:#ffffff;--button_border_hover_color:#ffffff;--button_gradient_top_color:#708ac7;--button_gradient_bottom_color:#5287ab;--button_gradient_top_color_hover:#4781a8;--button_gradient_bottom_color_hover:#5492c4;--button_typography-letter-spacing:1px;--button_margin-top:0px;--button_margin-right:0px;--button_margin-bottom:0px;--button_margin-left:0px;" target="_self">
+             <span class="fusion-button-text">
+              514-238-2142
+             </span>
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <script>
+    window.off_canvas_1046 = {"type":"popup","width":"200px","width_medium":"200px","width_small":"200px","height":"fit","custom_height":"","custom_height_medium":"","custom_height_small":"","horizontal_position":"flex-end","horizontal_position_medium":"flex-end","horizontal_position_small":"flex-end","vertical_position":"flex-end","vertical_position_medium":"flex-end","vertical_position_small":"flex-end","content_layout":"column","align_content":"flex-end","valign_content":"flex-start","content_wrap":"wrap","enter_animation":"slide","enter_animation_direction":"right","enter_animation_speed":0.5,"enter_animation_timing":"ease","exit_animation":"","exit_animation_direction":"static","exit_animation_speed":0.5,"exit_animation_timing":"ease","off_canvas_state":"opened","sb_height":"","position":"left","transition":"overlap","css_class":"","css_id":"","sb_enter_animation":"slideShort","sb_enter_animation_speed":0.5,"sb_enter_animation_timing":"ease","sb_exit_animation":"slideShort","sb_exit_animation_speed":0.5,"sb_exit_animation_timing":"ease","background_color":"rgba(0,0,0,0)","background_image":"","background_position":"left top","background_repeat":"repeat","background_size":"auto","background_custom_size":{"width":"","height":""},"background_blend_mode":"none","oc_scrollbar":"default","oc_scrollbar_background":"#f2f3f5","oc_scrollbar_handle_color":"#7fb2ef","margin":{"top":"","right":"20px","bottom":"20px","left":""},"padding":{"top":"","right":"","bottom":"","left":""},"box_shadow":"no","box_shadow_position":{"vertical":"","horizontal":""},"box_shadow_blur":"0","box_shadow_spread":"0","box_shadow_color":"","border_radius":{"top_left":"","top_right":"","bottom_right":"","bottom_left":""},"border_width":{"top":"","right":"","bottom":"","left":""},"border_color":"","overlay":"no","overlay_z_index":"","overlay_page_scrollbar":"yes","overlay_background_color":"rgba(0,0,0,0.8)","overlay_background_image":"","overlay_background_position":"left top","overlay_background_repeat":"repeat","overlay_background_size":"auto","overlay_background_custom_size":{"width":"","height":""},"overlay_background_blend_mode":"none","overlay_close_on_click":"yes","close_on_anchor_click":"no","close_on_esc":"no","auto_close_after_time":"","close_button":"no","close_button_position":"right","show_close_button_after_time":"","close_button_margin":{"top":"","right":"","bottom":"","left":""},"close_button_color":"","close_button_color_hover":"","close_icon_size":"16","close_button_custom_icon":"","on_page_load":"yes","time_on_page":"no","time_on_page_duration":"","on_scroll":"no","scroll_direction":"up","scroll_to":"position","scroll_position":"","scroll_element":"","on_click":"no","on_click_element":"","exit_intent":"no","after_inactivity":"no","inactivity_duration":"","on_add_to_cart":"no","publish_date_after":"","publish_date_until":"","frequency":"forever","frequency_xtimes":"","frequency_xdays":"","after_x_page_views":"no","number_of_page_views":"","after_x_sessions":"no","number_of_sessions":"","when_arriving_from":"","users":"all","users_roles":"","device":"","status_css_animations":"desktop","conditions_enabled":"yes","layout_conditions":"[]","dynamic_content_preview_type":"default","preview_post":"0","preview_avada_portfolio":"0","preview_avada_faq":"0","preview_archives":"post","has_js_rules":false};
+   </script>
+
+
+   <link href="{% static 'css/rs6.css' %}" id="rs-plugin-settings-css" media="all" rel="stylesheet" type="text/css">
+
+    <script async="" defer="" id="tp-tools-js" src="{% static 'js/rbtools.min.js' %}" type="text/javascript">
+    </script>
+    <script async="" defer="" id="revmin-js" src="{% static 'js/rs6.min.js' %}" type="text/javascript">
+    </script>
+
+   <script id="fusion-scripts-js" src="{% static 'js/fusion-script.js' %}" type="text/javascript">
+    </script>
+
+   <script id="rs-initialisation-scripts">
+     var tpj = jQuery;
+
+		var	revapi1;
+
+		if(window.RS_MODULES === undefined) window.RS_MODULES = {};
+		if(RS_MODULES.modules === undefined) RS_MODULES.modules = {};
+		RS_MODULES.modules["revslider11"] = {once: RS_MODULES.modules["revslider11"]!==undefined ? RS_MODULES.modules["revslider11"].once : undefined, init:function() {
+			window.revapi1 = window.revapi1===undefined || window.revapi1===null || window.revapi1.length===0  ? document.getElementById("rev_slider_1_1") : window.revapi1;
+			if(window.revapi1 === null || window.revapi1 === undefined || window.revapi1.length==0) { window.revapi1initTry = window.revapi1initTry ===undefined ? 0 : window.revapi1initTry+1; if (window.revapi1initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider11"].init()}); return;}
+			window.revapi1 = jQuery(window.revapi1);
+			if(window.revapi1.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_1_1"); return;}
+			revapi1.revolutionInit({
+					revapi:"revapi1",
+					DPR:"dpr",
+					sliderLayout:"fullwidth",
+					visibilityLevels:"1240,1024,1024,480",
+					gridwidth:"1240,1024,1024,480",
+					gridheight:"700,768,768,1000",
+					lazyType:"smart",
+					perspective:600,
+					perspectiveType:"global",
+					editorheight:"700,768,960,1000",
+					responsiveLevels:"1240,1024,1024,480",
+					progressBar:{disableProgressBar:true},
+					navigation: {
+						onHoverStop:false
+					},
+					viewPort: {
+						global:true,
+						globalDist:"-200px",
+						enable:false
+					},
+					fallbacks: {
+						allowHTML5AutoPlayOnAndroid:true
+					},
+			});
+
+		}} // End of RevInitScript
+
+		if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
+    </script>
+
+   <script>
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();  // Empêche la soumission classique du formulaire
+
+    let formData = new FormData(this);
+
+    fetch(this.action, {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: "Succès !",
+                text: "Votre message a été envoyé avec succès.",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+            document.getElementById("contact-form").reset();  // Réinitialiser le formulaire après l'envoi
+        } else {
+            Swal.fire({
+                title: "Erreur !",
+                text: data.error || "Une erreur est survenue. Veuillez réessayer.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            title: "Erreur serveur !",
+            text: "Impossible d'envoyer votre message pour le moment.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+    });
+});
+</script>
+
+
+
+
+   </link>
+  </div>
+
+ </body>
+
+</html>
