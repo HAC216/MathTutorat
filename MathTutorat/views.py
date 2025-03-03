@@ -5,6 +5,41 @@ from django.shortcuts import render
 
 from MathTutorat import settings
 
+from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
+
+from django.http import HttpResponse
+
+
+def robots_txt(request):
+    content = (
+        "User-agent: *\n"
+        "Disallow:\n"
+        "Sitemap: https://www.mathtutorat.com/sitemap.xml\n"
+    )
+    return HttpResponse(content, content_type="text/plain")
+
+
+class StaticSitemap(Sitemap):
+    priority = 0.5  # Priorité par défaut des pages
+    changefreq = "monthly"  # Fréquence de mise à jour des pages
+
+    def items(self):
+        # Liste des noms de routes définis dans urls.py
+        return [
+            'index',
+            'tutoratPrive',
+            'tutoratSemiPrive',
+            'demanderTuteur',
+            'devenirTuteur',
+            'about',
+            'blogue',
+            'apiContact',
+        ]
+
+    def location(self, item):
+        return reverse(item)  # Générer automatiquement les URLs
+
 
 def index(request):
     return render(request, 'index.html')
@@ -22,21 +57,16 @@ def demanderTuteur(request):
     return render(request, 'demanderTuteur.html')
 
 
-
 def devenirTuteur(request):
     return render(request, 'devenirTuteur.html')
-
 
 
 def about(request):
     return render(request, 'about.html')
 
 
-
 def blogue(request):
     return render(request, 'blogue.html')
-
-
 
 
 @csrf_exempt
@@ -69,7 +99,7 @@ def apiContact(request):
     {message}
     """
 
-    recipient_list = ["hassanec714@icloud.com","mathtutorsecondaire@gmail.com"]  # Remplace par les vraies adresses
+    recipient_list = ["hassanec714@icloud.com", "mathtutorsecondaire@gmail.com"]  # Remplace par les vraies adresses
 
     try:
 
@@ -82,10 +112,8 @@ def apiContact(request):
         if cv_file:
             email_message.attach(cv_file.name, cv_file.read(), cv_file.content_type)
 
-
         # Envoie l'email
         email_message.send()
-
 
         return JsonResponse({"success": True, "message": "Email envoyé avec succès"})
     except Exception as e:

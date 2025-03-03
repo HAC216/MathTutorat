@@ -10,5 +10,4 @@ env/
 # Ignore les fichiers de configuration et secrets
 .env
 
-# Ignore les fichiers statiques collectés
-staticfiles/
+

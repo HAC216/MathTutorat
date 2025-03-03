@@ -14,8 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.sitemaps.views import sitemap
+
 from MathTutorat.views import *
 from django.urls import path
+
+sitemaps = {
+    'static': StaticSitemap(),
+}
+
 
 urlpatterns = [
 
@@ -43,5 +50,10 @@ urlpatterns = [
 
     # contact
     path('apiContact', apiContact, name='apiContact'),
+
+    # Génération automatique du sitemap.xml
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+
+    path('robots.txt', robots_txt, name='robots_txt'),
 
 ]
