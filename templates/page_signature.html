@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature du Contrat - Math Tutor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #667eea;
+            --primary-dark: #3a0ca3;
+            --secondary: #4cc9f0;
+            --success: #2ea043;
+            --danger: #f21b3f;
+            --warning: #f5a623;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            opacity: 0.9;
+        }
+
+        main {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .info-section h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .info-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+
+        .step {
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 35px;
+            bottom: 0;
+            width: 2px;
+            background-color: #ddd;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-content {
+            margin-left: 40px;
+        }
+
+        .signature-section, .documents-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+        }
+
+        #signature-pad {
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 200px;
+            background-color: white;
+            cursor: crosshair;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            touch-action: none;
+        }
+
+        .contract-preview {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .contract-preview-header {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .contract-preview-header h3 {
+            margin: 0;
+            color: var(--primary-dark);
+        }
+
+        .contract-preview-content {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .contract-preview-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contract-preview-footer {
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
+
+        .preview-download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .preview-download-link:hover {
+            text-decoration: underline;
+        }
+
+        .button-section {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-clear {
+            background-color: var(--light);
+            color: var(--dark);
+            border: 1px solid #ddd;
+        }
+
+        .btn-sign {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-upload {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-complete {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .document-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .document-title {
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-weight: 500;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .document-upload {
+            padding: 15px;
+        }
+
+        .document-status {
+            padding: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-uploaded {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d1e7dd;
+            color: #0f5132;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .success-message h3 {
+            margin-bottom: 10px;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-steps {
+            display: flex;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            min-width: 120px;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -10px;
+            width: 20px;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+
+        .progress-step:last-child::after {
+            display: none;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-active .step-circle {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .step-completed .step-circle {
+            background-color: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .step-active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step-completed .step-label {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            padding-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid, .document-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-section {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .progress-steps {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Signature du Contrat de Collaboration</h1>
+            <p>Math Tutor - {{ professeur_nom }}</p>
+        </header>
+
+        <main>
+            <div class="progress-steps">
+                <div class="progress-step step-active">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Contrat</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Signature</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Documents</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>Informations du contrat</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Partie 1</strong>
+                        <span>Kenneth Ouedraogo (Math Tutor)</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Partie 2</strong>
+                        <span>{{ professeur_nom }} (Travailleur Autonome)</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Date</strong>
+                        <span>{{ date_creation }}</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Entrevue</strong>
+                        <span>{{ entrevue.date_entrevue|date:"d/m/Y H:i" }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-preview-section">
+                <h2 class="step-title"><span class="step-number">1</span> Aperçu du contrat</h2>
+                <div class="contract-preview">
+                    <div class="contract-preview-header">
+                        <h3>Contrat de Collaboration Math Tutor</h3>
+                    </div>
+                    <div class="contract-preview-content">
+                        <embed id="contract-preview-embed" class="contract-preview-embed"
+                               src="data:application/pdf;base64,{{ contract_pdf_base64 }}"
+                               type="application/pdf">
+                    </div>
+                    <div class="contract-preview-footer">
+                        <a href="data:application/pdf;base64,{{ contract_pdf_base64 }}" download="contrat_collaboration_{{ professeur_nom }}.pdf" class="preview-download-link">
+                            <i class="fas fa-download"></i> Télécharger le contrat
+                        </a>
+                    </div>
+                </div>
+                <div class="button-section" style="justify-content: flex-end;">
+                    <button id="to-signature-button" class="btn btn-primary">
+                        Continuer vers la signature <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-signature-section" style="display: none;">
+                <h2 class="step-title"><span class="step-number">2</span> Signature du contrat</h2>
+                <div class="signature-section">
+                    <p>Veuillez signer ci-dessous en dessinant votre signature.</p>
+                    <canvas id="signature-pad"></canvas>
+                    <div class="button-section">
+                        <button id="clear-button" class="btn btn-clear">
+                            <i class="fas fa-eraser"></i> Effacer
+                        </button>
+                        <button id="sign-button" class="btn btn-sign">
+                            <i class="fas fa-signature"></i> Confirmer la signature
+                        </button>
+                    </div>
+                    <div id="signature-status"></div>
+                </div>
+            </div>
+
+            <div id="step-documents-section" style="display: none;">
+                <h2 class="step-title"><span class="step-number">3</span> Documents requis</h2>
+                <p>Veuillez télécharger les documents suivants pour compléter votre dossier :</p>
+
+                <div class="documents-section">
+                    <form id="documents-form" enctype="multipart/form-data">
+                        <div class="document-grid">
+                            <div class="document-item">
+                                <div class="document-title">NAS</div>
+                                <div class="document-upload">
+                                    <input type="file" id="nas" name="nas" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                                </div>
+                                <div id="nas-status" class="document-status status-pending">En attente</div>
+                            </div>
+
+                            <div class="document-item">
+                                <div class="document-title">Permis de travail</div>
+                                <div class="document-upload">
+                                    <input type="file" id="permis" name="permis" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                                </div>
+                                <div id="permis-status" class="document-status status-pending">En attente</div>
+                            </div>
+
+                            <div class="document-item">
+                                <div class="document-title">Pièce d'identité</div>
+                                <div class="document-upload">
+                                    <input type="file" id="identite" name="identite" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                                </div>
+                                <div id="identite-status" class="document-status status-pending">En attente</div>
+                            </div>
+
+                            <div class="document-item">
+                                <div class="document-title">Autre document</div>
+                                <div class="document-upload">
+                                    <input type="file" id="autre" name="autre" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                                </div>
+                                <div id="autre-status" class="document-status status-pending">En attente</div>
+                            </div>
+                        </div>
+
+                        <div class="button-section">
+                            <button type="button" id="upload-button" class="btn btn-upload">
+                                <i class="fas fa-cloud-upload-alt"></i> Télécharger les documents
+                            </button>
+                            <button type="button" id="next-button" class="btn btn-complete" disabled>
+                                <i class="fas fa-arrow-right"></i> Terminer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="step-confirmation-section" style="display: none;">
+                <h2 class="step-title"><span class="step-number">4</span> Confirmation</h2>
+                <div class="success-message" style="display: block;">
+                    <h3><i class="fas fa-check-circle"></i> Processus complété avec succès!</h3>
+                    <p>Merci d'avoir signé le contrat de collaboration et téléchargé vos documents.</p>
+                    <p>Votre dossier a été enregistré et sera examiné par notre équipe.</p>
+
+                    <div class="contract-preview" style="margin-top: 20px;">
+                        <div class="contract-preview-header">
+                            <h3>Contrat signé</h3>
+                        </div>
+                        <div class="contract-preview-content">
+                            <embed id="signed-contract-preview" class="contract-preview-embed" src="" type="application/pdf">
+                        </div>
+                        <div class="contract-preview-footer">
+                            <a id="download-signed-contract" href="" download="contrat_collaboration_signe_{{ professeur_nom }}.pdf" class="preview-download-link">
+                                <i class="fas fa-download"></i> Télécharger le contrat signé
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="button-section" style="justify-content: center; margin-top: 30px;">
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Retour à l'accueil
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loader" class="loader">
+                <div class="loader-spinner"></div>
+                <p>Traitement en cours...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Math Tutor. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <!-- Charger la bibliothèque signature_pad AVANT notre script -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variable pour suivre l'étape actuelle
+            let currentStep = 1;
+
+            // Initialisation du pad de signature - CORRIGÉ
+            const canvas = document.getElementById('signature-pad');
+            let signaturePad;
+
+            // Fonction pour initialiser le pad de signature
+            function initSignaturePad() {
+                // S'assurer que la section est visible pour une bonne initialisation
+                const signatureSection = document.getElementById('step-signature-section');
+                const wasHidden = signatureSection.style.display === 'none';
+
+                if (wasHidden) {
+                    signatureSection.style.display = 'block';
+                }
+
+                // Initialiser le pad de signature
+                signaturePad = new SignaturePad(canvas, {
+                    backgroundColor: 'rgb(255, 255, 255)',
+                    penColor: 'rgb(0, 0, 0)',
+                    minWidth: 1,
+                    maxWidth: 2.5
+                });
+
+                // Forcer le redimensionnement du canvas
+                resizeCanvas();
+
+                // Remettre la section en état caché si nécessaire
+                if (wasHidden && currentStep !== 2) {
+                    signatureSection.style.display = 'none';
+                }
+            }
+
+            // Éléments du DOM
+            const progressSteps = document.querySelectorAll('.progress-step');
+            const stepPreviewSection = document.getElementById('step-preview-section');
+            const stepSignatureSection = document.getElementById('step-signature-section');
+            const stepDocumentsSection = document.getElementById('step-documents-section');
+            const stepConfirmationSection = document.getElementById('step-confirmation-section');
+
+            const toSignatureButton = document.getElementById('to-signature-button');
+            const clearButton = document.getElementById('clear-button');
+            const signButton = document.getElementById('sign-button');
+            const uploadButton = document.getElementById('upload-button');
+            const nextButton = document.getElementById('next-button');
+            const signatureStatus = document.getElementById('signature-status');
+            const loader = document.getElementById('loader');
+
+            // Documents status
+            const nasStatus = document.getElementById('nas-status');
+            const permisStatus = document.getElementById('permis-status');
+            const identiteStatus = document.getElementById('identite-status');
+            const autreStatus = document.getElementById('autre-status');
+
+            // Fichiers
+            const nasInput = document.getElementById('nas');
+            const permisInput = document.getElementById('permis');
+            const identiteInput = document.getElementById('identite');
+            const autreInput = document.getElementById('autre');
+
+            // Variables d'état
+            let isSigned = false;
+            let documentsUploaded = false;
+
+            // Redimensionnement du canvas
+            function resizeCanvas() {
+                if (!signaturePad) return;
+
+                const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                const width = canvas.offsetWidth;
+                const height = canvas.offsetHeight;
+
+                canvas.width = width * ratio;
+                canvas.height = height * ratio;
+                canvas.getContext("2d").scale(ratio, ratio);
+                signaturePad.clear(); // Effacer la signature existante
+            }
+
+            window.addEventListener("resize", resizeCanvas);
+
+            // Fonction pour passer à l'étape suivante
+            function goToStep(stepNumber) {
+                currentStep = stepNumber;
+
+                // Mettre à jour les classes des indicateurs d'étape
+                progressSteps.forEach((step, index) => {
+                    if (index < stepNumber - 1) {
+                        step.className = 'progress-step step-completed';
+                    } else if (index === stepNumber - 1) {
+                        step.className = 'progress-step step-active';
+                    } else {
+                        step.className = 'progress-step';
+                    }
+                });
+
+                // Afficher la section correspondante
+                stepPreviewSection.style.display = (stepNumber === 1) ? 'block' : 'none';
+                stepSignatureSection.style.display = (stepNumber === 2) ? 'block' : 'none';
+                stepDocumentsSection.style.display = (stepNumber === 3) ? 'block' : 'none';
+                stepConfirmationSection.style.display = (stepNumber === 4) ? 'block' : 'none';
+
+                // Si nous passons à l'étape de signature, initialiser le pad de signature
+                if (stepNumber === 2) {
+                    // Petit délai pour permettre au DOM de s'actualiser
+                    setTimeout(() => {
+                        initSignaturePad();
+                    }, 100);
+                }
+
+                // Faire défiler jusqu'en haut
+                window.scrollTo(0, 0);
+            }
+
+            // Passer à l'étape de signature
+            toSignatureButton.addEventListener('click', function() {
+                goToStep(2);
+            });
+
+            // Effacer la signature
+            clearButton.addEventListener('click', function() {
+                if (signaturePad) {
+                    signaturePad.clear();
+                    signatureStatus.innerHTML = '';
+                }
+            });
+
+            // Confirmer la signature
+            signButton.addEventListener('click', function() {
+                if (!signaturePad) {
+                    signatureStatus.innerHTML = '<p style="color: var(--danger); margin-top: 10px;">Erreur d\'initialisation. Veuillez rafraîchir la page.</p>';
+                    return;
+                }
+
+                if (signaturePad.isEmpty()) {
+                    signatureStatus.innerHTML = '<p style="color: var(--danger); margin-top: 10px;">Veuillez signer avant de confirmer.</p>';
+                    return;
+                }
+
+                loader.style.display = 'block';
+
+                // Obtenir la signature
+                const dataURL = signaturePad.toDataURL('image/png');
+
+                // Envoyer la signature au serveur
+                fetch('/traiter-signature/{{ contrat_id }}/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        signature: dataURL
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loader.style.display = 'none';
+
+                    if (data.success) {
+                        isSigned = true;
+
+                        // Stocker le PDF signé pour l'affichage ultérieur
+                        window.pdfBase64 = data.pdf_base64;
+
+                        // Passer à l'étape suivante (téléchargement des documents)
+                        goToStep(3);
+                    } else {
+                        signatureStatus.innerHTML = `<p style="color: var(--danger); margin-top: 10px;"><i class="fas fa-exclamation-circle"></i> Erreur: ${data.error}</p>`;
+                    }
+                })
+                .catch(error => {
+                    loader.style.display = 'none';
+                    signatureStatus.innerHTML = `<p style="color: var(--danger); margin-top: 10px;"><i class="fas fa-exclamation-circle"></i> Erreur: ${error}</p>`;
+                });
+            });
+
+            // Gérer le changement de fichiers
+            [nasInput, permisInput, identiteInput, autreInput].forEach(input => {
+                input.addEventListener('change', function() {
+                    const fileId = this.id;
+                    const statusElement = document.getElementById(`${fileId}-status`);
+
+                    if (this.files.length > 0) {
+                        statusElement.innerHTML = '<i class="fas fa-clock"></i> Prêt à télécharger';
+                        statusElement.className = 'document-status status-pending';
+                    } else {
+                        statusElement.innerHTML = 'En attente';
+                        statusElement.className = 'document-status status-pending';
+                    }
+                });
+            });
+
+            // Télécharger les documents
+            uploadButton.addEventListener('click', function() {
+                const formData = new FormData();
+                let hasFiles = false;
+
+                // Ajouter les fichiers au formulaire
+                if (nasInput.files.length > 0) {
+                    formData.append('nas', nasInput.files[0]);
+                    hasFiles = true;
+                }
+
+                if (permisInput.files.length > 0) {
+                    formData.append('permis', permisInput.files[0]);
+                    hasFiles = true;
+                }
+
+                if (identiteInput.files.length > 0) {
+                    formData.append('identite', identiteInput.files[0]);
+                    hasFiles = true;
+                }
+
+                if (autreInput.files.length > 0) {
+                    formData.append('autre', autreInput.files[0]);
+                    hasFiles = true;
+                }
+
+                if (!hasFiles) {
+                    alert("Veuillez télécharger au moins un document.");
+                    return;
+                }
+
+                loader.style.display = 'block';
+                uploadButton.disabled = true;
+
+                // Envoyer les documents au serveur
+                fetch('/upload-documents/{{ contrat_id }}/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loader.style.display = 'none';
+
+                    if (data.success) {
+                        // Mettre à jour le statut des documents
+                        data.uploaded.forEach(doc => {
+                            const statusElement = document.getElementById(`${doc}-status`);
+                            if (statusElement) {
+                                statusElement.className = 'document-status status-uploaded';
+                                statusElement.innerHTML = '<i class="fas fa-check"></i> Téléchargé';
+                            }
+                        });
+
+                        documentsUploaded = true;
+                        nextButton.disabled = false;
+                    } else {
+                        alert(`Erreur: ${data.error}`);
+                        uploadButton.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    loader.style.display = 'none';
+                    alert(`Erreur: ${error}`);
+                    uploadButton.disabled = false;
+                });
+            });
+
+            // Terminer le processus
+            nextButton.addEventListener('click', function() {
+                if (!documentsUploaded) {
+                    alert("Veuillez d'abord télécharger les documents requis.");
+                    return;
+                }
+
+                // Créer un élément pour afficher le PDF
+                const signedContractPreview = document.getElementById('signed-contract-preview');
+                signedContractPreview.src = `data:application/pdf;base64,${window.pdfBase64}`;
+
+                // Mettre à jour le lien de téléchargement
+                const downloadLink = document.getElementById('download-signed-contract');
+                downloadLink.href = `data:application/pdf;base64,${window.pdfBase64}`;
+
+                // Passer à l'étape de confirmation
+                goToStep(4);
+            });
+
+            // Initialiser le pad de signature (temporairement) pour s'assurer qu'il sera prêt
+            initSignaturePad();
+        });
+    </script>
+</body>
+</html>

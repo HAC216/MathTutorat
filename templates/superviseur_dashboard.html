@@ -1,0 +1,2039 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Superviseur - Gestion Tutorat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <style>
+        :root {
+            --primary-color: #1e90ff;
+            --primary-dark: #1a75d2;
+            --secondary-color: #f0f8ff;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-color: #ddd;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --sidebar-width: 250px;
+            --header-height: 60px;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header styles */
+        .header {
+            height: var(--header-height);
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-menu {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: background-color 0.2s;
+        }
+
+        .user-dropdown a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: white;
+            height: calc(100vh - var(--header-height));
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            z-index: 900;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 20px 20px 10px;
+            color: #888;
+            font-weight: bold;
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            padding: 20px;
+            flex: 1;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: bold;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Dashboard grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Quick action buttons */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .action-button i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Recent activity */
+        .activity-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .activity-timestamp {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #e6f7e6;
+            color: var(--success-color);
+        }
+
+        .status-inactive {
+            background-color: #f7f7e7;
+            color: var(--warning-color);
+        }
+
+        .status-suspended {
+            background-color: #f7e6e6;
+            color: var(--danger-color);
+        }
+
+        .status-en_attente {
+            background-color: #e6f7f9;
+            color: #17a2b8;
+        }
+
+        .status-terminee {
+            background-color: #e6f7e6;
+            color: var(--success-color);
+        }
+
+        .status-verification_document {
+            background-color: #f7f7e7;
+            color: var(--warning-color);
+        }
+
+        .status-acceptee {
+            background-color: #e6f7e6;
+            color: var(--success-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-view {
+            background-color: var(--primary-color);
+        }
+
+        .btn-edit {
+            background-color: var(--warning-color);
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+        }
+
+        .btn-icon:hover {
+            opacity: 0.8;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.2s;
+            border: none;
+            background: none;
+        }
+
+        .modal-close:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Details view */
+        .user-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .user-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .user-role {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .details-list {
+            width: 100%;
+        }
+
+        .details-item {
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .details-label {
+            width: 150px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .details-value {
+            flex: 1;
+        }
+
+        /* Tabs for modals */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Action buttons at top of modal */
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Filter and search */
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            display: flex;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-select {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* Document upload area */
+        .document-upload {
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .document-upload i {
+            font-size: 3rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .document-list {
+            margin-top: 20px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .document-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .document-info {
+            flex: 1;
+        }
+
+        .document-name {
+            font-weight: 500;
+        }
+
+        .document-meta {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .document-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* Styles spécifiques pour entrevues */
+        .entrevue-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .entrevue-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .entrevue-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .entrevue-title {
+            font-weight: 600;
+        }
+
+        .entrevue-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .entrevue-body {
+            padding: 15px;
+        }
+
+        .entrevue-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .entrevue-label {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .entrevue-footer {
+            padding: 10px 15px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .meet-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .meet-link i {
+            margin-right: 5px;
+        }
+
+        .meet-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .dashboard-grid, .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-row .form-group {
+                margin-bottom: 0;
+            }
+
+            .entrevue-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility classes */
+        .text-right {
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: var(--text-color);
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn i {
+            margin-right: 5px;
+        }
+
+        /* Styles pour la gestion des permissions */
+        .permissions-container {
+            margin-top: 20px;
+        }
+
+        .permissions-table th {
+            text-align: left;
+        }
+
+        .info-message {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+            color: #666;
+        }
+
+        .search-results {
+            margin: 15px 0;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .user-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .user-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .user-item:last-child {
+            border-bottom: none;
+        }
+
+        .perm-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Style pour permission héritée */
+        .inherited {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+
+        /* Styles pour la visualisation des documents */
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.document-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: white;
+    cursor: pointer;
+}
+
+.document-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.document-icon {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    color: #4361ee;
+}
+
+.document-icon i {
+    font-size: 3rem;
+}
+
+.document-details {
+    padding: 12px;
+}
+
+.document-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.document-date {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.document-status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.document-status-en_attente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.document-status-verifie {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.document-status-rejete {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.document-preview-container {
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.document-preview {
+    height: 500px;
+    background-color: #f8f9fa;
+}
+
+.preview-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+.preview-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.preview-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-header {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.preview-body {
+    flex: 1;
+    overflow: hidden;
+}
+
+.document-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="mobile-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="logo">
+            Gestion Tutorat
+        </div>
+
+        <div class="user-info">
+            <div class="user-menu" id="userMenu">
+                <span>{{ request.user.prenom }} {{ request.user.nom }}</span>
+                <i class="fas fa-chevron-down"></i>
+
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="{% url 'deconnection' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="" class="active"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
+
+            <div class="sidebar-title">Gestion</div>
+            <li><a href="#" onclick="openModal('entrevuesModal')"><i class="fas fa-video"></i> Entrevues</a></li>
+
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-title">
+            <h1>Tableau de bord</h1>
+            <span>Bienvenue, {{ request.user.prenom }} {{ request.user.nom }}</span>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="dashboard-grid">
+
+            <div class="stat-card" onclick="openModal('professeurModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_professeurs }}</div>
+                <div class="stat-label">Professeurs</div>
+            </div>
+
+            <div class="stat-card" onclick="openModal('clientModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_clients }}</div>
+                <div class="stat-label">Clients</div>
+            </div>
+
+            <div class="stat-card" onclick="openModal('entrevuesModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_entrevues|default:'0' }}</div>
+                <div class="stat-label">Entrevues</div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <!-- Professeurs Modal -->
+    <div class="modal" id="professeurModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des professeurs</h2>
+                <button class="modal-close" onclick="closeModal('professeurModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="filters">
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        {% if user.role == 'professeur' %}
+                            {% if user.statut == 'actif' %}
+                        <tr>
+                            <td>{{ user.prenom }} {{ user.nom }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <span class="status-badge {% if user.statut == 'actif' %}status-active{% elif user.statut == 'inactif' %}status-inactive{% else %}status-suspended{% endif %}">
+                                    {{ user.statut|title }}
+                                </span>
+                            </td>
+                        </tr>
+                                {% endif %}
+                            {% endif %}
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+            <!-- clientModal -->
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des clients</h2>
+                <button class="modal-close" onclick="closeModal('clientModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="filters">
+                </div>
+
+                <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            {% if user.role == 'client' %}
+                                {% if user.statut == 'actif' %}
+                            <tr>
+                                <td>{{ user.prenom }} {{ user.nom }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <span class="status-badge {% if user.statut == 'actif' %}status-active{% elif user.statut == 'inactif' %}status-inactive{% else %}status-suspended{% endif %}">
+                                        {{ user.statut|title }}
+                                    </span>
+                                </td>
+                            </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Modal d'ajout d'entrevue -->
+    <div class="modal" id="addEntrevueModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Ajouter une entrevue</h2>
+                <button class="modal-close" onclick="closeModal('addEntrevueModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addEntrevueForm" method="post" action="{% url 'superviseur_dashboard' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="createur_id" value="{{ request.user.id }}">
+
+                    <input type="hidden" name="formulaire_name" value="ajout_entrevu">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="interviewer_id">Interviewer</label>
+                            <select class="form-control" id="interviewer_id" name="interviewer_id" required>
+                                <option value="">Sélectionner un interviewer</option>
+                                {% for user in users %}
+                                    {% if user.role == 'admin' or user.role == 'superviseur' %}
+                                        <option value="{{ user.id }}">{{ user.prenom }} {{ user.nom }} ({{ user.role }})</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="date_entrevue">Date de l'entrevue</label>
+                            <input type="datetime-local" class="form-control" id="date_entrevue" name="date_entrevue" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lien_entrevue">Lien de réunion</label>
+                            <input type="text" class="form-control" id="lien_entrevue" name="lien_entrevue" required>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Informations du professeur</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prof_prenom">Prénom</label>
+                                        <input type="text" class="form-control" id="prof_prenom" name="prof_prenom" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prof_nom">Nom</label>
+                                        <input type="text" class="form-control" id="prof_nom" name="prof_nom" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prof_email">Email</label>
+                                        <input type="email" class="form-control" id="prof_email" name="prof_email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prof_telephone">Téléphone</label>
+                                        <input type="tel" class="form-control" id="prof_telephone" name="prof_telephone" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prof_sexe">Sexe</label>
+                                        <select class="form-control" id="prof_sexe" name="prof_sexe" required>
+                                            <option value="M">Masculin</option>
+                                            <option value="F">Féminin</option>
+                                            <option value="A">Autre</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prof_date_naissance">Date de naissance</label>
+                                        <input type="date" class="form-control" id="prof_date_naissance" name="prof_date_naissance">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prof_adresse">Adresse</label>
+                                    <textarea class="form-control" id="prof_adresse" name="prof_adresse" rows="2"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prof_specialites">Spécialités</label>
+                                    <textarea class="form-control" id="prof_specialites" name="prof_specialites" rows="2" placeholder="Mathématiques, Physique, etc."></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Ajoutez des notes concernant l'entrevue..."></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="closeModal('addEntrevueModal')">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Créer l'entrevue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entrevues Modal -->
+    <div class="modal" id="entrevuesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des entrevues</h2>
+                <button class="modal-close" onclick="closeModal('entrevuesModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="filters">
+                    <button class="btn btn-primary" onclick="openModal('addEntrevueModal')">
+                        <i class="fas fa-plus"></i> Nouvelle entrevue
+                    </button>
+                </div>
+
+                <div class="entrevues-container">
+                    {% for entrevue in entrevues %}
+                    <div class="entrevue-card">
+                        <div class="entrevue-header">
+                            <div class="entrevue-title">Entrevue avec {{ entrevue.professeur.user.prenom }} {{ entrevue.professeur.user.nom }}</div>
+                            <div class="entrevue-date">{{ entrevue.date_entrevue|date:"d/m/Y H:i" }}</div>
+                        </div>
+                        <div class="entrevue-body">
+                            <div class="entrevue-info">
+                                <div>
+                                    <div class="entrevue-label">Interviewer</div>
+                                    <div>{{ entrevue.interviewer.prenom }} {{ entrevue.interviewer.nom }}</div>
+                                </div>
+                                <div>
+                                    <div class="entrevue-label">Statut</div>
+                                    <div>
+                                        <span class="status-badge status-{{ entrevue.statut }}">
+                                            {{ entrevue.get_statut_display }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="entrevue-label">Créée par</div>
+                                    <div>{{ entrevue.createur.prenom }} {{ entrevue.createur.nom }}</div>
+                                </div>
+                                <div>
+                                    <div class="entrevue-label">Date de création</div>
+                                    <div>{{ entrevue.date_creation|date:"d/m/Y" }}</div>
+                                </div>
+                            </div>
+                            {% if entrevue.notes %}
+                            <div>
+                                <div class="entrevue-label">Notes</div>
+                                <p>{{ entrevue.notes }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="entrevue-footer">
+                        <div class="action-buttons">
+                            <a href="#" class="btn btn-primary" onclick="afficherDetailsEntrevue(
+                            '{{ entrevue.id }}',
+                            '{{ entrevue.professeur.id }}',
+                            '{{ entrevue.professeur.user.prenom }} {{ entrevue.professeur.user.nom }}',
+                            '{{ entrevue.statut }}',
+                            '{{ entrevue.get_statut_display }}',
+                            '{{ entrevue.date_entrevue }}',
+                            '{{ entrevue.interviewer.prenom }} {{ entrevue.interviewer.nom }}',
+                            '{{ entrevue.createur.prenom }} {{ entrevue.createur.nom }}',
+                            '{{ entrevue.date_creation}}',
+                            '{{ entrevue.lien_entrevue }}',
+                            '{{ entrevue.professeur.specialites}}',
+                            '{{ entrevue.notes }}',
+                            '{{ entrevue.professeur.niveau}}',);">
+                                <i class="fas fa-eye"></i> Détails
+                            </a>
+                            <a href="#" class="btn btn-warning" onclick="afficherEditEntrevue(
+                            '{{ entrevue.id }}',
+                            '{{ entrevue.interviewer.id }}',
+                            '{{ entrevue.date_entrevue}}',
+                            '{{ entrevue.statut }}',
+                            '{{ entrevue.professeur.niveau }}',
+                            '{{ entrevue.notes}}');">
+                                <i class="fas fa-edit"></i> Modifier
+                            </a>
+                            <a href="#" class="btn btn-danger" onclick="confirmerSuppressionEntrevue('{{ entrevue.id }}','{{ entrevue.date_entrevue }}')">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </a>
+                        </div>
+                            <a href="{{ entrevue.lien_entrevue }}" target="_blank" class="meet-link">
+                                <i class="fas fa-video"></i> Rejoindre la réunion
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="info-message">
+                        <p>Aucune entrevue trouvée. Créez une nouvelle entrevue en cliquant sur le bouton "Nouvelle entrevue".</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de détail d'entrevue (template générique) -->
+    <div class="modal" id="detailEntrevueModal-template" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Détails de l'entrevue</h2>
+                <button class="modal-close" onclick="closeModalTemplate(this)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs">
+                    <div class="tab active" data-tab="tab-info">Informations</div>
+                    <div class="tab" data-tab="tab-documents">Documents</div>
+                </div>
+
+                <div id="tab-info" class="tab-content active">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-name">__PROF_NAME__</div>
+                        <div class="user-role">Professeur</div>
+                    </div>
+
+                    <div class="details-list">
+                        <div class="details-item">
+                            <div class="details-label">Statut</div>
+                            <div class="details-value">
+                                <span class="status-badge status-__STATUS__">__STATUS_DISPLAY__</span>
+                            </div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Date de l'entrevue</div>
+                            <div class="details-value">__DATE_ENTREVUE__</div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Interviewer</div>
+                            <div class="details-value">__INTERVIEWER__</div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Créé par</div>
+                            <div class="details-value">__CREATEUR__</div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Date de création</div>
+                            <div class="details-value">__DATE_CREATION__</div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Lien de réunion</div>
+                            <div class="details-value">
+                                <a href="__LIEN_ENTREVUE__" target="_blank" class="meet-link">
+                                    <i class="fas fa-video"></i> Rejoindre la réunion
+                                </a>
+                            </div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Niveau</div>
+                            <div class="details-value">__NIVEAU__</div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Spécialités</div>
+                            <div class="details-value">__SPECIALITES__</div>
+                        </div>
+                        <div class="details-item">
+                            <div class="details-label">Notes</div>
+                            <div class="details-value">__NOTES__</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="tab-documents" class="tab-content">
+    <div class="document-upload">
+        <form action="{% url 'superviseur_dashboard' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="entrevue_id" value="__ID__">
+            <input type="hidden" name="professeur_id" value="__PROF_ID__">
+            <input type="hidden" name="formulaire_name" value="upload_document">
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="type_document">Type de document</label>
+                    <select class="form-control" id="type_document" name="type_document" required>
+                        <option value="contrat">Contrat</option>
+                        <option value="permis_etude">Permis d'étude</option>
+                        <option value="permis_travail">Permis de travail</option>
+                        <option value="nas">Numéro d'assurance sociale</option>
+                        <option value="piece_identite">Pièce d'identité</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Visualiser
+            </button>
+        </form>
+    </div>
+
+
+    <div class="modal-actions">
+        <button class="btn btn-success" onclick="openValidationModal('__ID__')">
+            <i class="fas fa-check-double"></i> Valider tous les documents
+        </button>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- Modal de validation des documents -->
+<div class="modal" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="validationModalLabel">Confirmer la validation</h5>
+        <button type="button" class="modal-close" onclick="closeModal('validationModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir valider tous les documents de cette entrevue?</p>
+
+        <form id="validationForm" method="post" action="{% url 'superviseur_dashboard' %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" id="validationEntrevueId" value="">
+          <input type="hidden" name="formulaire_name" value="valider_documents">
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeModal('validationModal')">Annuler</button>
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-check-double"></i> Confirmer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Modal d'édition d'entrevue (template générique) -->
+    <div class="modal" id="editEntrevueModal-template" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Modifier l'entrevue</h2>
+                <button class="modal-close" onclick="closeModalTemplate(this)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editEntrevueForm-__ID__" method="post" action="{% url 'superviseur_dashboard' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="entrevue_id" value="__ID__">
+
+                    <input type="hidden" name="formulaire_name" value="modifier_entrevu">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="interviewer_id-edit-__ID__">Interviewer</label>
+                            <select class="form-control" id="interviewer_id-edit-__ID__" name="interviewer_id" >
+                                <option value="">Sélectionner un interviewer</option>
+                                {% for user in users %}
+                                    {% if user.role == 'admin' or user.role == 'superviseur' %}
+                                        <option value="{{ user.id }}" __INTERVIEWER_SELECTED__>{{ user.prenom }} {{ user.nom }} ({{ user.role }})</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_entrevue-edit-__ID__">Date de l'entrevue</label>
+                            <input type="datetime-local" class="form-control" id="date_entrevue-edit-__ID__" name="date_entrevue" value="__DATE_ENTREVUE_VALUE__" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lien_entrevue">Lien de réunion</label>
+                            <input type="text" class="form-control" name="lien_entrevue">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="statut-edit-__ID__">Statut</label>
+                        <select class="form-control" id="statut-edit-__ID__" name="statut">
+                            <option value="en_attente" __STATUS_EN_ATTENTE__>En attente</option>
+                            <option value="terminee" __STATUS_TERMINEE__>Terminée</option>
+                            <option value="verification_document" __STATUS_VERIFICATION__>Vérification des documents</option>
+                            <option value="acceptee" __STATUS_ACCEPTEE__>Acceptée</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Niveau du professeur</label>
+                        <input type="number" class="form-control" id="prof_niveau-edit-__ID__" name="prof_niveau" min="1" max="3" value="__NIVEAU__">
+                        <small class="form-text text-muted">La modification du niveau changera automatiquement le statut à "vérification_document"</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes-edit-__ID__">Notes</label>
+                        <textarea class="form-control" id="notes-edit-__ID__" name="notes" rows="3">__NOTES__</textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="closeModal('editEntrevueModal-__ID__')">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation de suppression d'entrevue -->
+<div class="modal" id="deleteEntrevueModal-template" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Confirmer la suppression</h2>
+            <button class="modal-close" onclick="closeModalTemplate(this)">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Êtes-vous sûr de vouloir supprimer cette entrevue prévue le <strong>__DATE_ENTREVUE__</strong> ?</p>
+                <p>Cette action est irréversible et supprimera également tous les documents associés.</p>
+            </div>
+
+            <form id="deleteEntrevueForm-__ID__" method="post" action="{% url 'superviseur_dashboard' %}">
+                {% csrf_token %}
+                <input type="hidden" name="entrevue_id" value="__ID__">
+                <input type="hidden" name="formulaire_name" value="supprimer_entrevu">
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('deleteEntrevueModal-__ID__')">Annuler</button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Confirmer la suppression
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- Ajoutez ceci dans la section head après vos autres références CSS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+// Fonction pour ouvrir le modal de validation// Fonction pour ouvrir le modal de validation
+function openValidationModal(id) {
+  // Ferme tout modal actuel en utilisant la classe standard
+  closeAllModals();
+
+  // Définit l'ID de l'entrevue dans le champ caché
+  document.getElementById('validationEntrevueId').value = id;
+
+  // Ouvre le modal de validation
+  document.getElementById('validationModal').classList.add('show');
+}
+</script>
+
+<script>
+    // Toggle sidebar on mobile
+    document.getElementById('sidebarToggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('show');
+    });
+
+    // Toggle user dropdown
+    document.getElementById('userMenu').addEventListener('click', function(e) {
+        document.getElementById('userDropdown').classList.toggle('show');
+        e.stopPropagation();
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        document.getElementById('userDropdown').classList.remove('show');
+    });
+
+    // Modal functions
+    function openModal(modalId) {
+        // Close any open modals first
+        closeAllModals();
+        document.getElementById(modalId).classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    function closeModalTemplate(element) {
+        // Find the parent modal and close it
+        const modal = element.closest('.modal');
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    function closeAllModals() {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.classList.remove('show');
+        });
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Tab switching
+    const setupTabs = (container) => {
+        const tabs = container.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs in the same group
+                const parentTabs = this.parentElement.querySelectorAll('.tab');
+                parentTabs.forEach(t => t.classList.remove('active'));
+
+                // Add active class to clicked tab
+                this.classList.add('active');
+
+                // Show the corresponding tab content
+                const tabId = this.getAttribute('data-tab');
+                const tabContents = this.closest('.modal-body').querySelectorAll('.tab-content');
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                container.querySelector('#' + tabId).classList.add('active');
+            });
+        });
+    };
+
+    // Setup all tabs in the document
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.modal').forEach(modal => {
+            setupTabs(modal);
+        });
+    });
+
+    // Function to dynamically create detail and edit modals for entrevues
+
+
+    // Call function to create modals on page load
+    document.addEventListener('DOMContentLoaded', createDynamicModals);
+
+    // Function to filter entrevues
+    document.getElementById('statutFilter').addEventListener('change', function() {
+        filterEntrevues();
+    });
+
+    document.getElementById('searchEntrevue').addEventListener('keyup', function() {
+        filterEntrevues();
+    });
+
+    function filterEntrevues() {
+        const statusFilter = document.getElementById('statutFilter').value;
+        const searchText = document.getElementById('searchEntrevue').value.toLowerCase();
+        const entrevueCards = document.querySelectorAll('.entrevue-card');
+
+        entrevueCards.forEach(card => {
+            const statusBadge = card.querySelector('.status-badge');
+            const status = statusBadge ? statusBadge.classList[1].replace('status-', '') : '';
+
+            const title = card.querySelector('.entrevue-title').textContent.toLowerCase();
+            const interviewer = card.querySelector('.entrevue-info').textContent.toLowerCase();
+
+            const statusMatch = statusFilter === '' || status === statusFilter;
+            const textMatch = searchText === '' ||
+                title.includes(searchText) ||
+                interviewer.includes(searchText);
+
+            if (statusMatch && textMatch) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+
+
+    function afficherDetailsEntrevue(id, professeurId, professeurNom, statut, statutDisplay,
+                               dateEntrevue, interviewer, createur, dateCreation,
+                               lienEntrevue, specialites, notes , niveau) {
+    // Fermer d'abord le modal des entrevues
+    closeModal('entrevuesModal');
+
+    // Récupérer le template
+    const detailModalTemplate = document.getElementById('detailEntrevueModal-template');
+
+    // Créer un nouveau modal à partir du template
+    const detailModal = detailModalTemplate.cloneNode(true);
+    detailModal.id = `detailEntrevueModal-${id}`;
+    detailModal.style.display = '';
+
+    // Remplacer les placeholders avec les valeurs réelles
+    let detailHTML = detailModal.innerHTML;
+
+    // Informations de base et identifiants
+    detailHTML = detailHTML.replace(/__ID__/g, id);
+    detailHTML = detailHTML.replace(/__PROF_ID__/g, professeurId);
+    detailHTML = detailHTML.replace(/__PROF_NAME__/g, professeurNom);
+
+    detailHTML = detailHTML.replace(/__NIVEAU__/g, niveau);
+
+    // Statut et dates
+    detailHTML = detailHTML.replace(/__STATUS__/g, statut);
+    detailHTML = detailHTML.replace(/__STATUS_DISPLAY__/g, statutDisplay);
+    detailHTML = detailHTML.replace(/__DATE_ENTREVUE__/g, dateEntrevue);
+    detailHTML = detailHTML.replace(/__DATE_CREATION__/g, dateCreation);
+
+    // Informations des personnes
+    detailHTML = detailHTML.replace(/__INTERVIEWER__/g, interviewer);
+    detailHTML = detailHTML.replace(/__CREATEUR__/g, createur);
+
+    // Autres détails
+    detailHTML = detailHTML.replace(/__LIEN_ENTREVUE__/g, lienEntrevue);
+    detailHTML = detailHTML.replace(/__SPECIALITES__/g, specialites || "Non définies");
+    detailHTML = detailHTML.replace(/__NOTES__/g, notes || "Aucune note");
+
+    // Générer les documents
+    let documentsHTML = '';
+    const documentElements = document.querySelectorAll('.document-item');
+    documentElements.forEach(docElement => {
+        const docEntrevueId = docElement.closest('[data-entrevue-id]')?.getAttribute('data-entrevue-id');
+        if (docEntrevueId === id) {
+            documentsHTML += docElement.outerHTML;
+        }
+    });
+
+    // Remplacer le placeholder des documents
+    detailHTML = detailHTML.replace('__DOCUMENTS__', documentsHTML);
+
+    // Mettre à jour le contenu du modal
+    detailModal.innerHTML = detailHTML;
+
+    // Ajouter le modal au document
+    document.body.appendChild(detailModal);
+
+    // Initialiser les onglets
+    setupTabs(detailModal);
+
+    // Ouvrir le modal
+    openModal(`detailEntrevueModal-${id}`);
+
+    // Modification du bouton de fermeture pour revenir au modal des entrevues
+    const closeButton = detailModal.querySelector('.modal-close');
+    closeButton.onclick = function() {
+        closeModal(`detailEntrevueModal-${id}`);
+        // Supprimer le modal après fermeture pour éviter les doublons
+        setTimeout(() => {
+            detailModal.remove();
+            // Rouvrir le modal des entrevues
+            openModal('entrevuesModal');
+        }, 300);
+    };
+}
+
+function afficherEditEntrevue(id, interviewerId, dateEntrevueValue, statut, niveau, notes) {
+    // Fermer d'abord le modal actuel si besoin
+    if (document.querySelector('.modal.show')) {
+        const modalId = document.querySelector('.modal.show').id;
+        closeModal(modalId);
+    }
+
+    // Récupérer le template
+    const editModalTemplate = document.getElementById('editEntrevueModal-template');
+
+    // Créer un nouveau modal à partir du template
+    const editModal = editModalTemplate.cloneNode(true);
+    editModal.id = `editEntrevueModal-${id}`;
+    editModal.style.display = '';
+
+    // Remplacer les placeholders avec les valeurs réelles
+    let editHTML = editModal.innerHTML;
+
+    // Remplacer l'ID
+    editHTML = editHTML.replace(/__ID__/g, id);
+
+    // Marquer l'interviewer comme sélectionné
+    editHTML = editHTML.replace(`value="${interviewerId}" __INTERVIEWER_SELECTED__`, `value="${interviewerId}" selected="selected"`);
+
+    // Remplacer la date
+    editHTML = editHTML.replace(/__DATE_ENTREVUE_VALUE__/g, dateEntrevueValue);
+
+    // Marquer le statut comme sélectionné
+    const statusOptions = ['en_attente', 'terminee', 'verification_document', 'acceptee'];
+    statusOptions.forEach(option => {
+        const placeholder = `__STATUS_${option.toUpperCase()}__`;
+        editHTML = editHTML.replace(placeholder, option === statut ? 'selected="selected"' : '');
+    });
+
+    // Remplacer le niveau et les notes
+    editHTML = editHTML.replace(/__NIVEAU__/g, niveau || '');
+    editHTML = editHTML.replace(/__NOTES__/g, notes || '');
+
+    // Mettre à jour le contenu du modal
+    editModal.innerHTML = editHTML;
+
+    // Ajouter le modal au document
+    document.body.appendChild(editModal);
+
+    // Ouvrir le modal
+    openModal(`editEntrevueModal-${id}`);
+
+    // Modification du bouton de fermeture
+    const closeButton = editModal.querySelector('.modal-close');
+    closeButton.onclick = function() {
+        closeModal(`editEntrevueModal-${id}`);
+        // Supprimer le modal après fermeture pour éviter les doublons
+        setTimeout(() => {
+            editModal.remove();
+            // Si on venait du modal de détails, le rouvrir
+            if (document.getElementById(`detailEntrevueModal-${id}`)) {
+                openModal(`detailEntrevueModal-${id}`);
+            } else {
+                // Sinon, rouvrir le modal des entrevues
+                openModal('entrevuesModal');
+            }
+        }, 300);
+    };
+
+    // Modification du bouton annuler
+    const cancelButton = editModal.querySelector('button[onclick^="closeModal"]');
+    cancelButton.onclick = function() {
+        closeModal(`editEntrevueModal-${id}`);
+        // Supprimer le modal après fermeture pour éviter les doublons
+        setTimeout(() => {
+            editModal.remove();
+            // Si on venait du modal de détails, le rouvrir
+            if (document.getElementById(`detailEntrevueModal-${id}`)) {
+                openModal(`detailEntrevueModal-${id}`);
+            } else {
+                // Sinon, rouvrir le modal des entrevues
+                openModal('entrevuesModal');
+            }
+        }, 300);
+    };
+}
+
+function confirmerSuppressionEntrevue(id, dateEntrevue) {
+    // Fermer d'abord le modal actuel si besoin
+    if (document.querySelector('.modal.show')) {
+        const modalId = document.querySelector('.modal.show').id;
+        closeModal(modalId);
+    }
+
+    // Récupérer le template
+    const deleteModalTemplate = document.getElementById('deleteEntrevueModal-template');
+
+    // Créer un nouveau modal à partir du template
+    const deleteModal = deleteModalTemplate.cloneNode(true);
+    deleteModal.id = `deleteEntrevueModal-${id}`;
+    deleteModal.style.display = '';
+
+    // Remplacer les placeholders avec les valeurs réelles
+    let deleteHTML = deleteModal.innerHTML;
+
+    // Remplacer l'ID et les informations
+    deleteHTML = deleteHTML.replace(/__ID__/g, id);
+    deleteHTML = deleteHTML.replace(/__DATE_ENTREVUE__/g, dateEntrevue);
+
+    // Mettre à jour le contenu du modal
+    deleteModal.innerHTML = deleteHTML;
+
+    // Ajouter le modal au document
+    document.body.appendChild(deleteModal);
+
+    // Ouvrir le modal
+    openModal(`deleteEntrevueModal-${id}`);
+
+    // Modification du bouton de fermeture
+    const closeButton = deleteModal.querySelector('.modal-close');
+    closeButton.onclick = function() {
+        closeModal(`deleteEntrevueModal-${id}`);
+        // Supprimer le modal après fermeture pour éviter les doublons
+        setTimeout(() => {
+            deleteModal.remove();
+            // Déterminer quel modal rouvrir
+            if (document.getElementById(`detailEntrevueModal-${id}`)) {
+                openModal(`detailEntrevueModal-${id}`);
+            } else if (document.getElementById(`editEntrevueModal-${id}`)) {
+                openModal(`editEntrevueModal-${id}`);
+            } else {
+                // Sinon, rouvrir le modal des entrevues
+                openModal('entrevuesModal');
+            }
+        }, 300);
+    };
+
+    // Modification du bouton annuler
+    const cancelButton = deleteModal.querySelector('button[onclick^="closeModal"]');
+    cancelButton.onclick = function() {
+        closeModal(`deleteEntrevueModal-${id}`);
+        // Supprimer le modal après fermeture pour éviter les doublons
+        setTimeout(() => {
+            deleteModal.remove();
+            // Déterminer quel modal rouvrir
+            if (document.getElementById(`detailEntrevueModal-${id}`)) {
+                openModal(`detailEntrevueModal-${id}`);
+            } else if (document.getElementById(`editEntrevueModal-${id}`)) {
+                openModal(`editEntrevueModal-${id}`);
+            } else {
+                // Sinon, rouvrir le modal des entrevues
+                openModal('entrevuesModal');
+            }
+        }, 300);
+    };
+}
+
+</script>
+
+
+
+</body>
+</html>

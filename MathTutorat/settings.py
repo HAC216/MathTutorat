@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'gestion_tutorat'
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,34 @@ TEMPLATES = [
     },
 ]
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'MATHTUTORAT',
+        'USER': 'postgres',
+        'PASSWORD': 'passer',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+import dj_database_url
+
+# Remplacer la configuration par l'URL de la base de données Render si disponible
+DATABASE_URL = env('DATABASE_URL', default=None)
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
+    DATABASES['default']['CONN_MAX_AGE'] = 600
+    # Configuration SSL pour Render
+    DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+
+AUTH_USER_MODEL = 'gestion_tutorat.User'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'gestion_tutorat.EmailBackend.EmailBackend',
+]
+
 # WSGI application
 WSGI_APPLICATION = 'MathTutorat.wsgi.application'
 
@@ -77,6 +106,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+
 # Static files settings
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
@@ -93,6 +123,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Configuration pour les alertes
+ALERT_ADMIN_EMAIL = env('ALERT_ADMIN_EMAIL', default='')
+SITE_NAME = env('SITE_NAME', default='')
+ALERT_EMAILS_ENABLED = env('ALERT_EMAILS_ENABLED', default='')
 
 if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
     print("⚠️  Attention : EMAIL_HOST_USER ou EMAIL_HOST_PASSWORD non définis !")

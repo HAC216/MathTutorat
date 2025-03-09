@@ -1,0 +1,360 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <title>Inscription</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .left-side {
+            background-color: #1e90ff;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            color: white;
+        }
+
+        .left-side h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .left-side p {
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .right-side {
+            width: 60%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        .register-title {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #1e90ff;
+            outline: none;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+
+        .submit-btn {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1e3a8a;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                max-width: 95%;
+            }
+
+            .left-side {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .right-side {
+                width: 100%;
+                padding: 30px;
+                max-height: none;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <h1>Rejoignez-nous</h1>
+            <p>Créez votre compte pour accéder à nos services et profiter de toutes les fonctionnalités.</p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="80" fill="white">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"/>
+            </svg>
+        </div>
+        <div class="right-side">
+            <h2 class="register-title">Inscription</h2>
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="error-message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'inscription' %}">
+                {% csrf_token %}
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_nom">Nom</label>
+                        <input type="text" id="id_nom" name="nom" placeholder="Votre nom" required>
+                        {% if form.nom.errors %}
+                        <div class="error-message">{{ form.nom.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_prenom">Prénom</label>
+                        <input type="text" id="id_prenom" name="prenom" placeholder="Votre prénom" required>
+                        {% if form.prenom.errors %}
+                        <div class="error-message">{{ form.prenom.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_email">Email</label>
+                    <input type="email" id="id_email" name="email" placeholder="Votre adresse email" required>
+                    {% if form.email.errors %}
+                    <div class="error-message">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_password1">Mot de passe</label>
+                        <div class="password-container">
+                            <input type="password" id="id_password1" name="password1" placeholder="Créez un mot de passe" required>
+                            <span class="show-password" onclick="togglePassword('id_password1')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        {% if form.password1.errors %}
+                        <div class="error-message">{{ form.password1.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_password2">Confirmer le mot de passe</label>
+                        <div class="password-container">
+                            <input type="password" id="id_password2" name="password2" placeholder="Confirmez votre mot de passe" required>
+                            <span class="show-password" onclick="togglePassword('id_password2')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        {% if form.password2.errors %}
+                        <div class="error-message">{{ form.password2.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_telephone">Téléphone</label>
+                        <input type="tel" id="id_telephone" name="telephone" placeholder="Votre numéro de téléphone" required>
+                        {% if form.telephone.errors %}
+                        <div class="error-message">{{ form.telephone.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_date_naissance">Date de naissance</label>
+                        <input type="date" id="id_date_naissance" name="date_naissance">
+                        {% if form.date_naissance.errors %}
+                        <div class="error-message">{{ form.date_naissance.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_sexe">Sexe</label>
+                        <select id="id_sexe" name="sexe" required>
+                            <option value="" selected disabled>Sélectionnez</option>
+                            <option value="M">Masculin</option>
+                            <option value="F">Féminin</option>
+                        </select>
+                        {% if form.sexe.errors %}
+                        <div class="error-message">{{ form.sexe.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_ethnie">Ethnie (optionnel)</label>
+                        <input type="text" id="id_ethnie" name="ethnie" placeholder="Votre ethnie">
+                        {% if form.ethnie.errors %}
+                        <div class="error-message">{{ form.ethnie.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_adresse">Adresse</label>
+                    <textarea id="id_adresse" name="adresse" rows="3" placeholder="Votre adresse complète" required></textarea>
+                    {% if form.adresse.errors %}
+                    <div class="error-message">{{ form.adresse.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_role">Rôle</label>
+                    <select id="id_role" name="role" required>
+                        <option value="" selected disabled>Sélectionnez votre rôle</option>
+                        <option value="admin">Administrateur</option>
+                        <option value="superviseur">Superviseur</option>
+                        <option value="professeur">Professeur</option>
+                        <option value="client">Client</option>
+                        <!-- Ajoutez d'autres rôles selon vos besoins -->
+                    </select>
+                    {% if form.role.errors %}
+                    <div class="error-message">{{ form.role.errors }}</div>
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="id_statut">Statut</label>
+                    <select id="id_statut" name="statut" required>
+                        <option value="" selected disabled>Sélectionnez votre statut</option>
+                        <option value="actif">Actif</option>
+                        <option value="inactif">Pas actif</option>
+                        <!-- Ajoutez d'autres rôles selon vos besoins -->
+                    </select>
+                    {% if form.statut.errors %}
+                    <div class="error-message">{{ form.statut.errors }}</div>
+                    {% endif %}
+                </div>
+
+
+                <button type="submit" class="submit-btn">S'inscrire</button>
+
+                <div class="login-link">
+                    Déjà un compte? <a href="">Se connecter</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(id) {
+            const passwordInput = document.getElementById(id);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+    </script>
+</body>
+</html>

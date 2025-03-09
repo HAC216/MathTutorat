@@ -1,0 +1,1686 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Gestion Tutorat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <style>
+        :root {
+            --primary-color: #1e90ff;
+            --primary-dark: #1a75d2;
+            --secondary-color: #f0f8ff;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-color: #ddd;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --sidebar-width: 250px;
+            --header-height: 60px;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header styles */
+        .header {
+            height: var(--header-height);
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-menu {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: background-color 0.2s;
+        }
+
+        .user-dropdown a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: white;
+            height: calc(100vh - var(--header-height));
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            z-index: 900;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 20px 20px 10px;
+            color: #888;
+            font-weight: bold;
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            padding: 20px;
+            flex: 1;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: bold;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Dashboard grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Quick action buttons */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .action-button i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Recent activity */
+        .activity-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .activity-timestamp {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #e6f7e6;
+            color: var(--success-color);
+        }
+
+        .status-inactive {
+            background-color: #f7f7e7;
+            color: var(--warning-color);
+        }
+
+        .status-suspended {
+            background-color: #f7e6e6;
+            color: var(--danger-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-view {
+            background-color: var(--primary-color);
+        }
+
+        .btn-edit {
+            background-color: var(--warning-color);
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+        }
+
+        .btn-icon:hover {
+            opacity: 0.8;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.2s;
+            border: none;
+            background: none;
+        }
+
+        .modal-close:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Details view */
+        .user-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .user-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .user-role {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .details-list {
+            width: 100%;
+        }
+
+        .details-item {
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .details-label {
+            width: 150px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .details-value {
+            flex: 1;
+        }
+
+        /* Tabs for modals */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Action buttons at top of modal */
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Filter and search */
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            display: flex;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-select {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .dashboard-grid, .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-row .form-group {
+                margin-bottom: 0;
+            }
+        }
+
+        /* Utility classes */
+        .text-right {
+            text-align: right;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: var(--text-color);
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn i {
+            margin-right: 5px;
+        }
+
+
+
+
+
+
+
+
+
+        /* Styles pour la gestion des permissions */
+.permissions-container {
+    margin-top: 20px;
+}
+
+.permissions-table th {
+    text-align: left;
+}
+
+.info-message {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    color: #666;
+}
+
+.search-results {
+    margin: 15px 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.user-item:hover {
+    background-color: #f5f5f5;
+}
+
+.user-item:last-child {
+    border-bottom: none;
+}
+
+.perm-description {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Style pour permission héritée */
+.inherited {
+    color: #6c757d;
+    font-style: italic;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="mobile-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="logo">
+            Gestion Tutorat
+        </div>
+
+        <div class="user-info">
+            <div class="user-menu" id="userMenu">
+                <span>{{ request.user.prenom }} {{ request.user.nom }}</span>
+                <i class="fas fa-chevron-down"></i>
+
+                <div class="user-dropdown" id="userDropdown">
+                   <!--  <a href="#"><i class="fas fa-user"></i> Mon profil</a>-->
+                   <!-- <a href="#"><i class="fas fa-cog"></i> Paramètres</a>-->
+                    <a href="{% url 'deconnection' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="" class="active"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
+
+            <div class="sidebar-title">Gestion</div>
+            <li><a href="#" onclick="openModal('userModal')"><i class="fas fa-users"></i> Utilisateurs</a></li>
+            <li><a href="#" onclick="" style="text-decoration: line-through; opacity: 0.5;">
+                <i class="fas fa-lock"></i> Permissions
+            </a></li>
+
+
+            <div class="sidebar-title">Log</div>
+            <li><a href="#" onclick="openModal('logsModalAll')"><i class="fas fa-history"></i> Historique</a></li>
+
+            <div class="sidebar-title">Log</div>
+            <li><a href="{% url 'superviseur_dashboard' %}"><i class="fas fa-history"></i> Switch to superviseur dashboard</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-title">
+            <h1>Tableau de bord</h1>
+            <span>Bienvenue, {{ request.user.prenom }} {{ request.user.nom }}</span>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="dashboard-grid">
+            <div class="stat-card" onclick="openModal('userModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_users }}</div>
+                <div class="stat-label">Utilisateurs</div>
+            </div>
+
+            <div class="stat-card" onclick="openModal('professeurModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_professeurs }}</div>
+                <div class="stat-label">Professeurs</div>
+            </div>
+
+            <div class="stat-card" onclick="openModal('clientModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_clients }}</div>
+                <div class="stat-label">Clients</div>
+            </div>
+
+            <div class="stat-card" onclick="openModal('connectedUsersModal')">
+                <div class="stat-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="stat-value">{{ stats.connected_users }}</div>
+                <div class="stat-label">Utilisateurs connectés</div>
+            </div>
+        </div>
+
+
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header">
+                Activité des administrateurs
+                <button class="btn btn-primary btn-sm" onclick="openModal('logsModalAll')"><i class="fas fa-eye"></i> Voir tout</button>
+            </div>
+            <div class="card-body">
+                {% if admin_logs %}
+                    {% for log in admin_logs %}
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">{{ log.action }}</div>
+                            <div class="activity-description">{{ log.details|truncatechars:100 }}</div>
+                            <div class="activity-timestamp">{{ log.timestamp|date:"d/m/Y H:i" }} - {{ log.user }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucune activité récente des administrateurs.</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Users Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des utilisateurs</h2>
+                <button class="modal-close" onclick="closeModal('userModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs">
+                    <div class="tab active" data-tab="allUsers">Tous les utilisateurs</div>
+                    <div class="tab" data-tab="addUser">Ajouter un utilisateur</div>
+                </div>
+
+
+                <div class="tab-content active" id="allUsers">
+                    <div class="filters">
+                        <!--
+                        <div class="search-box">
+                            <input type="text" placeholder="Rechercher un utilisateur...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+
+                        -->
+
+                        <!--
+                        <div class="filter-options">
+                            <select class="filter-select">
+                                <option value="">Tous les rôles</option>
+                                <option value="admin">Admin</option>
+                                <option value="superviseur">Superviseur</option>
+                                <option value="professeur">Professeur</option>
+                                <option value="client">Client</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">Tous les statuts</option>
+                                <option value="actif">Actif</option>
+                                <option value="inactif">Inactif</option>
+                                <option value="suspendu">Suspendu</option>
+                            </select>
+                        </div>
+                        -->
+
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Rôle</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                <td>{{ user.prenom }} {{ user.nom }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.role|title }}</td>
+                                <td>
+                                    <span class="status-badge {% if user.statut == 'actif' %}status-active{% elif user.statut == 'inactif' %}status-inactive{% else %}status-suspended{% endif %}">
+                                        {{ user.statut|title }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-view"
+        onclick="openUserDetails('{{ user.id }}',
+                                 '{{ user.prenom }}',
+                                 '{{ user.nom }}',
+                                 '{{ user.email }}',
+                                 '{{ user.role }}',
+                                 '{{ user.statut }}',
+                                 '{{ user.telephone }}',
+                                 '{{ user.adresse }}',
+                                 '{{ user.date_naissance}}',
+                                 '{{ user.sexe}}',
+                                 '{{ user.ethnie}}',
+                                 '{{ user.date_creation}}',
+                                 '{{ user.derniere_connexion }}')">
+
+                                            <i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon btn-edit" onclick="openEditUser('{{ user.id }}',
+                                 '{{ user.prenom }}',
+                                 '{{ user.nom }}',
+                                 '{{ user.email }}',
+                                 '{{ user.role }}',
+                                 '{{ user.statut }}',
+                                 '{{ user.telephone }}',
+                                 '{{ user.adresse }}',
+                                 '{{ user.date_naissance}}',
+                                 '{{ user.sexe}}',
+                                 '{{ user.ethnie}}')"><i class="fas fa-edit"></i></button>
+                                        <button class="btn-icon btn-delete" onclick="openDeleteUser('{{ user.id }}','{{ user.prenom }}','{{ user.nom }}',)"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tab-content" id="addUser">
+
+                    <form id="userForm" method="post" action="">
+    {% csrf_token %}
+
+    <!-- Champ caché pour identifier le formulaire -->
+    <div class="form-group" hidden>
+        <label for="formulaire_name"></label>
+        <input type="text" name="formulaire_name" class="form-control" value="ajout_user">
+    </div>
+
+    <!-- Section Informations personnelles -->
+    <div class="form-section">
+        <h4>Informations personnelles</h4>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_prenom">Prénom</label>
+                <input type="text" id="id_prenom" name="prenom" placeholder="Prénom" class="form-control" required>
+                {% if form.prenom.errors %}
+                <div class="error-message">{{ form.prenom.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_nom">Nom</label>
+                <input type="text" id="id_nom" name="nom" placeholder="Nom" class="form-control" required>
+                {% if form.nom.errors %}
+                <div class="error-message">{{ form.nom.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="date_naissance">Date de naissance</label>
+                <input type="date" id="date_naissance" name="date_naissance" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="sexe">Sexe</label>
+                <select id="sexe" name="sexe" class="form-control" required>
+                    <option value="">Sélectionner</option>
+                    <option value="M">Masculin</option>
+                    <option value="F">Féminin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ethnie">Ethnie (optionnel)</label>
+                <input type="text" id="ethnie" name="ethnie" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Coordonnées -->
+    <div class="form-section">
+        <h4>Coordonnées</h4>
+
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            <input type="email" id="id_email" name="email" placeholder="exemple@domaine.com" class="form-control" required>
+            {% if form.email.errors %}
+            <div class="error-message">{{ form.email.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+XXX XX XX XX XX" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <textarea id="adresse" name="adresse" class="form-control" rows="3" placeholder="Adresse complète" required></textarea>
+        </div>
+    </div>
+
+    <!-- Section Accès au compte -->
+    <div class="form-section">
+        <h4>Paramètres du compte</h4>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_password1">Mot de passe</label>
+                <div class="password-container">
+                    <input type="password" id="id_password1" name="password1" placeholder="Mot de passe" class="form-control" required>
+                    <span class="show-password" onclick="togglePassword('id_password1')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                    </span>
+                </div>
+                {% if form.password1.errors %}
+                <div class="error-message">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password2">Confirmer le mot de passe</label>
+                <div class="password-container">
+                    <input type="password" id="id_password2" name="password2" placeholder="Confirmer le mot de passe" class="form-control" required>
+                    <span class="show-password" onclick="togglePassword('id_password2')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                    </span>
+                </div>
+                {% if form.password2.errors %}
+                <div class="error-message">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Rôle et statut -->
+    <div class="form-section">
+        <h4>Paramètres administratifs</h4>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="role">Rôle</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="">Sélectionner un rôle</option>
+                    <option value="admin">Administrateur</option>
+                    <option value="superviseur">Superviseur</option>
+                    <option value="professeur">Professeur</option>
+                    <option value="client">Client</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="statut">Statut</label>
+                <select id="statut" name="statut" class="form-control" required>
+                    <option value="actif">Actif</option>
+                    <option value="inactif">Inactif</option>
+                    <option value="suspendu">Suspendu</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="switchTab('allUsers')">Annuler</button>
+        <button type="submit" class="btn btn-primary">Ajouter l'utilisateur</button>
+    </div>
+</form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div class="modal" id="userDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Détails de l'utilisateur</h2>
+                <button class="modal-close" onclick="closeModal('userDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="user-name" id="detailUserName">Prénom Nom</h3>
+                    <div class="user-role" id="detailUserRole">Rôle</div>
+                </div>
+
+                <div class="details-list">
+                    <div class="details-item">
+                        <div class="details-label">Email</div>
+                        <div class="details-value" id="detailUserEmail">email@example.com</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Téléphone</div>
+                        <div class="details-value" id="detailUserPhone">+123456789</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Adresse</div>
+                        <div class="details-value" id="detailUserAddress">123 rue Example, Ville</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Date de naissance</div>
+                        <div class="details-value" id="detailUserBirthdate">01/01/1990</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Sexe</div>
+                        <div class="details-value" id="detailUserGender">Masculin</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Ethnie</div>
+                        <div class="details-value" id="detailUserEthnie">-</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Statut</div>
+                        <div class="details-value" id="detailUserStatus">Actif</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Date de création</div>
+                        <div class="details-value" id="detailUserCreated">01/01/2023</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="details-label">Dernière connexion</div>
+                        <div class="details-value" id="detailUserLastLogin">01/01/2023 12:00</div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="closeModal('userDetailsModal')">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal" id="editUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Modifier l'utilisateur</h2>
+                <button class="modal-close" onclick="closeModal('editUserModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editUserForm" method="post" action="{% url 'admin_dashboard' %}">
+                    {% csrf_token %}
+
+                    <!-- Champ caché pour identifier le formulaire -->
+                <div class="form-group" hidden>
+                    <label for="formulaire_name"></label>
+                    <input type="text" name="formulaire_name" class="form-control" value="edit_user">
+                </div>
+
+                    <input type="hidden" id="edit_user_id" name="user_id">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit_nom">Nom</label>
+                            <input type="text" id="edit_nom" name="nom" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_prenom">Prénom</label>
+                            <input type="text" id="edit_prenom" name="prenom" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_email">Email</label>
+                        <input type="email" id="edit_email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit_role">Rôle</label>
+                            <select id="edit_role" name="role" class="form-control" required>
+                                <option value="admin">Administrateur</option>
+                                <option value="superviseur">Superviseur</option>
+                                <option value="professeur">Professeur</option>
+                                <option value="client">Client</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_sexe">Sexe</label>
+                            <select id="edit_sexe" name="sexe" class="form-control" required>
+                                <option value="M">Masculin</option>
+                                <option value="F">Féminin</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit_date_naissance">Date de naissance</label>
+                            <input type="date" id="edit_date_naissance" name="date_naissance" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_telephone">Téléphone</label>
+                            <input type="tel" id="edit_telephone" name="telephone" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_adresse">Adresse</label>
+                        <textarea id="edit_adresse" name="adresse" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit_ethnie">Ethnie (optionnel)</label>
+                            <input type="text" id="edit_ethnie" name="ethnie" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_statut">Statut</label>
+                            <select id="edit_statut" name="statut" class="form-control" required>
+                                <option value="actif">Actif</option>
+                                <option value="inactif">Inactif</option>
+                                <option value="suspendu">Suspendu</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_password">Nouveau mot de passe (laisser vide pour ne pas changer)</label>
+                        <input type="password" id="edit_password" name="password" class="form-control">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="closeModal('editUserModal')">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete User Confirmation Modal -->
+    <div class="modal" id="deleteUserModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmer la suppression</h2>
+                <button class="modal-close" onclick="closeModal('deleteUserModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                                <!-- Champ caché pour identifier le formulaire -->
+                <div class="form-group" hidden>
+                    <label for="formulaire_name"></label>
+                    <input type="text" id="formulaire_name" name="formulaire_name" class="form-control" value="delete_user">
+                </div>
+                <p>Êtes-vous sûr de vouloir supprimer cet utilisateur? Cette action est irréversible.</p>
+
+                <form id="deleteUserForm" method="post" action="{% url 'admin_dashboard' %}">
+                    {% csrf_token %}
+                    <input type="hidden" id="user_id" name="user_id">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="closeModal('deleteUserModal')">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professeurs Modal -->
+    <div class="modal" id="professeurModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des professeurs</h2>
+                <button class="modal-close" onclick="closeModal('professeurModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="filters">
+                </div>
+
+                <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            {% if user.role == 'professeur' %}
+                                {% if user.statut == 'actif' %}
+                            <tr>
+                                <td>{{ user.prenom }} {{ user.nom }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <span class="status-badge {% if user.statut == 'actif' %}status-active{% elif user.statut == 'inactif' %}status-inactive{% else %}status-suspended{% endif %}">
+                                        {{ user.statut|title }}
+                                    </span>
+                                </td>
+                            </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+        <!-- clientModal -->
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des clients</h2>
+                <button class="modal-close" onclick="closeModal('clientModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="filters">
+                </div>
+
+                <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            {% if user.role == 'client' %}
+                                {% if user.statut == 'actif' %}
+                            <tr>
+                                <td>{{ user.prenom }} {{ user.nom }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <span class="status-badge {% if user.statut == 'actif' %}status-active{% elif user.statut == 'inactif' %}status-inactive{% else %}status-suspended{% endif %}">
+                                        {{ user.statut|title }}
+                                    </span>
+                                </td>
+                            </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+
+            <!-- connectedUsersModal -->
+    <div class="modal" id="connectedUsersModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des utilisateur connecte</h2>
+                <button class="modal-close" onclick="closeModal('connectedUsersModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="filters">
+                </div>
+
+                <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                {% if user.est_connecte %}
+                            <tr>
+                                <td>{{ user.prenom }} {{ user.nom }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <span class="status-badge {% if user.statut == 'actif' %}status-active{% elif user.statut == 'inactif' %}status-inactive{% else %}status-suspended{% endif %}">
+                                        {{ user.statut|title }}
+                                    </span>
+                                </td>
+                            </tr>
+
+                                {% endif %}
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+            <!-- Log Systeme -->
+
+     <div class="modal" id="logsModalAll">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Gestion des Log systeme </h2>
+                <button class="modal-close" onclick="closeModal('logsModalAll')">&times;</button>
+            </div>
+            <div class="modal-body">
+                {% if logs %}
+                    {% for log in logs %}
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">{{ log.action }}</div>
+                            <div class="activity-description">{{ log.details}}</div>
+                            <div class="activity-timestamp">{{ log.timestamp|date:"d/m/Y H:i" }} - {{ log.user }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucune activité récente.</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('show');
+        });
+
+        // Toggle user dropdown
+        document.getElementById('userMenu').addEventListener('click', function(e) {
+            document.getElementById('userDropdown').classList.toggle('show');
+            e.stopPropagation();
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            document.getElementById('userDropdown').classList.remove('show');
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            // Close any open modals first
+            closeAllModals();
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function closeAllModals() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('show');
+            });
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs in the same group
+                const parentTabs = this.parentElement.querySelectorAll('.tab');
+                parentTabs.forEach(t => t.classList.remove('active'));
+
+                // Add active class to clicked tab
+                this.classList.add('active');
+
+                // Show the corresponding tab content
+                const tabId = this.getAttribute('data-tab');
+                const tabContents = this.closest('.modal-body').querySelectorAll('.tab-content');
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        function switchTab(tabId) {
+            // Find the tab that corresponds to this content
+            const tab = document.querySelector(`.tab[data-tab="${tabId}"]`);
+            if (tab) {
+                tab.click();
+            }
+        }
+
+
+function openUserDetails(userId, prenom, nom, email, role, statut, telephone, adresse, dateNaissance, sexe, ethnie, dateCreation, derniereConnexion) {
+    // Fermer le modal utilisateur actuel
+    closeModal('userModal');
+
+    // Remplir les détails dans le modal
+    document.getElementById('detailUserName').textContent = `${prenom} ${nom}`;
+    document.getElementById('detailUserRole').textContent = role;
+    document.getElementById('detailUserEmail').textContent = email;
+    document.getElementById('detailUserPhone').textContent = telephone;
+    document.getElementById('detailUserAddress').textContent = adresse;
+    document.getElementById('detailUserBirthdate').textContent = dateNaissance;
+    document.getElementById('detailUserGender').textContent = sexe === 'M' ? 'Masculin' : (sexe === 'F' ? 'Féminin' : 'Autre');
+    document.getElementById('detailUserEthnie').textContent = ethnie;
+    document.getElementById('detailUserStatus').textContent = statut;
+    document.getElementById('detailUserCreated').textContent = dateCreation;
+    document.getElementById('detailUserLastLogin').textContent = derniereConnexion;
+
+
+
+    // Ouvrir le modal de détails
+    openModal('userDetailsModal');
+}
+
+function openEditUser(userId, prenom, nom, email, role, statut, telephone, adresse, dateNaissance, sexe, ethnie) {
+    // Fermer le modal utilisateur actuel
+    closeModal('userModal');
+
+    // Remplir les champs du formulaire d'édition
+    document.getElementById('edit_user_id').value = userId; // C'est un champ caché qui stocke l'ID
+    document.getElementById('edit_nom').value = nom;
+    document.getElementById('edit_prenom').value = prenom;
+    document.getElementById('edit_email').value = email;
+
+    // Pour les selects, il faut définir la valeur
+    document.getElementById('edit_role').value = role;
+    document.getElementById('edit_statut').value = statut;
+    document.getElementById('edit_sexe').value = sexe;
+
+    document.getElementById('edit_telephone').value = telephone;
+
+    // Pour un textarea
+    document.getElementById('edit_adresse').value = adresse;
+
+    // Convertir la date au format YYYY-MM-DD pour le champ date
+    if (dateNaissance && dateNaissance !== 'Non spécifié') {
+        const dateParts = dateNaissance.split('/');
+        if (dateParts.length === 3) {
+            document.getElementById('edit_date_naissance').value = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+        }
+    } else {
+        document.getElementById('edit_date_naissance').value = '';
+    }
+
+    document.getElementById('edit_ethnie').value = ethnie !== 'Non spécifié' ? ethnie : '';
+
+    // Vider le champ de mot de passe (puisqu'il est optionnel)
+    document.getElementById('edit_password').value = '';
+
+    // Ouvrir le modal d'édition
+    openModal('editUserModal');
+}
+
+function openDeleteUser(userId,prenom, nom) {
+    // Fermer le modal utilisateur actuel
+    closeModal('userModal');
+
+
+
+    // Remplir les champs du formulaire d'édition
+    document.getElementById('user_id').value = userId;
+
+
+    // Ouvrir le modal d'édition
+    openModal('deleteUserModal');
+}
+
+    </script>
+
+</body>
+</html>

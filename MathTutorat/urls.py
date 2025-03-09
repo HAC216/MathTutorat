@@ -19,6 +19,8 @@ from django.contrib.sitemaps.views import sitemap
 from MathTutorat.views import *
 from django.urls import path
 
+from gestion_tutorat.views import *
+
 sitemaps = {
     'static': StaticSitemap(),
 }
@@ -51,9 +53,42 @@ urlpatterns = [
     # contact
     path('apiContact', apiContact, name='apiContact'),
 
+    # connexion
+    path('connexion', connexion, name='connexion'),
+
+    # deconnexion
+    path('deconnection', deconection, name='deconnection'),
+
+    # inscription
+    #path('inscription', inscription, name='inscription'),
+
+    # dashboard admin
+    path('admin_dashboard', admin_dashboard, name='admin_dashboard'),
+
+    # dashboard superviseur
+    path('superviseur_dashboard', superviseur_dashboard, name='superviseur_dashboard'),
+
+    # dashboard professeur
+    path('professeur_dashboard', professeur_dashboard, name='professeur_dashboard'),
+
+    # dashboard client
+    path('client_dashboard', client_dashboard, name='client_dashboard'),
+
+    # URL pour signer un contrat lié à une entrevue
+    path('contrat/signer/<int:entrevue_id>/', signerContrat, name='signer_contrat'),
+
+    # URLs pour traiter la signature et l'upload de documents
+    path('traiter-signature/<str:contrat_id>/', traiterSignatureContrat, name='traiter_signature'),
+    path('upload-documents/<str:contrat_id>/', uploadDocumentsProfesseur, name='upload_documents'),
+
+    # URL pour télécharger un document
+    path('document/<int:document_id>/', telechargerContrat, name='telecharger_document'),
+
     # Génération automatique du sitemap.xml
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 
     path('robots.txt', robots_txt, name='robots_txt'),
+
+
 
 ]
