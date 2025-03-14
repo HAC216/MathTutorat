@@ -1,0 +1,107 @@
+<!-- templates/email_demande_tuteur.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #0052cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .section-title {
+            color: #0052cc;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .field {
+            margin-bottom: 8px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nouvelle demande de tuteur</h1>
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <div class="section-title">Informations du Parent</div>
+            <div class="field">
+                <span class="label">Nom:</span> {{ prenom }} {{ nom }}
+            </div>
+            <div class="field">
+                <span class="label">Téléphone:</span> {{ telephone }}
+            </div>
+            <div class="field">
+                <span class="label">Courriel:</span> {{ courriel }}
+            </div>
+            <div class="field">
+                <span class="label">Adresse:</span> {{ adresse }}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Informations de l'Enfant</div>
+            <div class="field">
+                <span class="label">Nom:</span> {{ prenom_enfant }} {{ nom_enfant }}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Détails du Cours</div>
+            <div class="field">
+                <span class="label">Heures par semaine:</span> {{ heures_semaine }}
+            </div>
+            <div class="field">
+                <span class="label">Mode de cours:</span> {{ mode_cours }}
+            </div>
+            {% if mode_cours == "En présentiel" and adresse_cours %}
+            <div class="field">
+                <span class="label">Adresse du cours:</span> {{ adresse_cours }}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if message %}
+        <div class="section">
+            <div class="section-title">Message du client</div>
+            <div class="field">
+                {{ message|linebreaks }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <p>Cette demande a été soumise via le formulaire de demande de tuteur.</p>
+    </div>
+</body>
+</html>

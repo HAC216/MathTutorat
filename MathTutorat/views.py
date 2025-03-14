@@ -118,3 +118,97 @@ def apiContact(request):
         return JsonResponse({"success": True, "message": "Email envoyé avec succès"})
     except Exception as e:
         return JsonResponse({"success": False, "error": f"Erreur lors de l'envoi : {str(e)}"}, status=500)
+
+
+# views.py - Solution avec envoi d'email
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+
+def demande_tuteur(request):
+    """Affiche le formulaire de demande de tuteur"""
+    return render(request, 'demande_tuteur.html')
+
+
+def envoyer_demande(request):
+    """Traite l'envoi du formulaire via email"""
+    if request.method == 'POST':
+        # Récupération des données du formulaire
+        nom = request.POST.get('nom', '')
+        prenom = request.POST.get('prenom', '')
+        telephone = request.POST.get('telephone', '')
+        courriel = request.POST.get('courriel', '')
+        adresse = request.POST.get('adresse', '')
+        nom_enfant = request.POST.get('nom_enfant', '')
+        prenom_enfant = request.POST.get('prenom_enfant', '')
+        heures_semaine = request.POST.get('heures_semaine', '')
+        mode_cours = request.POST.get('mode_cours', '')
+        adresse_cours = request.POST.get('adresse_cours', '')
+        message_client = request.POST.get('message', '')
+
+        # Déterminer le mode de cours en texte
+        mode_cours_texte = "En ligne" if mode_cours == "en_ligne" else "En présentiel"
+
+        # Création du contexte pour le template d'email
+        context = {
+            'nom': nom,
+            'prenom': prenom,
+            'telephone': telephone,
+            'courriel': courriel,
+            'adresse': adresse,
+            'nom_enfant': nom_enfant,
+            'prenom_enfant': prenom_enfant,
+            'heures_semaine': heures_semaine,
+            'mode_cours': mode_cours_texte,
+            'adresse_cours': adresse_cours,
+            'message': message_client,
+        }
+
+        try:
+            # Sujet de l'email
+            sujet = f"Nouvelle demande de tuteur - {prenom} {nom}"
+
+            # Email au format HTML (plus joli)
+            html_message = render_to_string('email_demande_tuteur.html', context)
+
+            # Version texte brut de l'email (pour les clients qui ne supportent pas HTML)
+            texte_brut = strip_tags(html_message)
+
+            # Email de l'expéditeur (peut être configuré dans settings.py)
+            from_email = settings.DEFAULT_FROM_EMAIL
+
+            # Liste des destinataires
+            recipient_list = ["hassanec714@icloud.com","mathtutorsecondaire@gmail.com"]  # Votre adresse email pour recevoir les demandes
+
+            # Envoi de l'email
+            send_mail(
+                subject=sujet,
+                message=texte_brut,
+                from_email=from_email,
+                recipient_list=recipient_list,
+                html_message=html_message,
+                fail_silently=False
+            )
+
+            # Message de succès
+            messages.success(request,"Votre demande a été envoyée avec succès! Un tuteur vous contactera très prochainement.")
+
+        except Exception as e:
+            # En cas d'erreur
+            messages.error(request,
+                           "Un problème est survenu lors de l'envoi de votre demande. Veuillez réessayer plus tard.")
+
+            # Log de l'erreur (pour débogage)
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Erreur lors de l'envoi de l'email: {str(e)}")
+
+        # Redirection vers la page du formulaire
+        return redirect('demande_tuteur')
+
+    # Si la méthode n'est pas POST, rediriger vers le formulaire
+    return redirect('demande_tuteur')

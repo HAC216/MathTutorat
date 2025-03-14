@@ -60,7 +60,7 @@ urlpatterns = [
     path('deconnection', deconection, name='deconnection'),
 
     # inscription
-    #path('inscription', inscription, name='inscription'),
+    path('inscription', inscription, name='inscription'),
 
     # dashboard admin
     path('admin_dashboard', admin_dashboard, name='admin_dashboard'),
@@ -89,6 +89,7 @@ urlpatterns = [
 
     path('robots.txt', robots_txt, name='robots_txt'),
 
-
+    path('demande-tuteur/', demande_tuteur, name='demande_tuteur'),
+    path('envoyer-demande/', envoyer_demande, name='envoyer_demande'),
 
 ]
