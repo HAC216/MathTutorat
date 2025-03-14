@@ -216,7 +216,6 @@
                         <label for="heures_semaine">Nombre d'heures par semaine</label>
                         <select id="heures_semaine" name="heures_semaine" required>
                             <option value="">Sélectionner</option>
-                            <option value="1">1 heure</option>
                             <option value="2">2 heures</option>
                             <option value="3">3 heures</option>
                             <option value="4">4 heures</option>
@@ -224,6 +223,7 @@
                             <option value="6">6 heures</option>
                             <option value="autre">Plus de 6 heures</option>
                         </select>
+                        <div style="font-size: 13px; color: #666; margin-top: 5px;">Le nombre d'heure minimun est de 2h/semaine.</div>
                     </div>
                 </div>
                 <div class="form-column">
@@ -242,6 +242,12 @@
                 <label for="adresse_cours">Adresse du cours (si en présentiel)</label>
                 <input type="text" id="adresse_cours" name="adresse_cours">
                 <div style="font-size: 13px; color: #666; margin-top: 5px;">Si l'adresse du cours est la même que votre adresse personnelle ou si elle est déjà définie, vous pouvez laisser ce champ vide.</div>
+            </div>
+
+            <div class="form-group" id="disponibilite_container">
+                <label for="disponibilite">Disponibilité</label>
+                <input type="text" id="disponibilite" name="disponibilite">
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">Veuillez indiquer vos disponibilités pour ce cours.</div>
             </div>
 
             <div class="form-group">

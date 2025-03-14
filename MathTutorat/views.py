@@ -149,6 +149,7 @@ def envoyer_demande(request):
         mode_cours = request.POST.get('mode_cours', '')
         adresse_cours = request.POST.get('adresse_cours', '')
         message_client = request.POST.get('message', '')
+        disponibilite = request.POST.get('disponibilite', '')
 
         # Déterminer le mode de cours en texte
         mode_cours_texte = "En ligne" if mode_cours == "en_ligne" else "En présentiel"
@@ -166,6 +167,7 @@ def envoyer_demande(request):
             'mode_cours': mode_cours_texte,
             'adresse_cours': adresse_cours,
             'message': message_client,
+            'disponibilite': disponibilite,
         }
 
         try:
