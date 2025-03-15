@@ -92,4 +92,7 @@ urlpatterns = [
     path('demande-tuteur/', demande_tuteur, name='demande_tuteur'),
     path('envoyer-demande/', envoyer_demande, name='envoyer_demande'),
 
+    path('suivi-tutorat/', suivi_tutorat, name='suivi_tutorat'),
+    path('envoyer-suivi/', envoyer_suivi, name='envoyer_suivi'),
+
 ]

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des heures de tutorat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+        .student-info {
+            background-color: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #1a73e8;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+        h2 {
+            color: #1a73e8;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .message-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Suivi des heures de tutorat</h1>
+    </div>
+
+    <div class="content">
+        <h2>Informations du tuteur</h2>
+        <p><strong>Nom du tuteur:</strong> {{ tuteur_name }}</p>
+
+        <h2>Élèves concernés</h2>
+        {% for eleve in eleves %}
+        <div class="student-info">
+            <p><strong>Nom de l'élève:</strong> {{ eleve.nom }}</p>
+            <p><strong>Nombre d'heures:</strong> {{ eleve.heures }}h</p>
+            <p><strong>Période:</strong> Du {{ eleve.debut }} au {{ eleve.fin }}</p>
+        </div>
+        {% endfor %}
+
+        {% if message %}
+        <h2>Message</h2>
+        <div class="message-box">
+            {{ message }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <p>Ce message a été envoyé automatiquement depuis le formulaire de suivi de tutorat.</p>
+        <p>© {{ now|date:"Y" }} - Service de tutorat</p>
+    </div>
+</body>
+</html>

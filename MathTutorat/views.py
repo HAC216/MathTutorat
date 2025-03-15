@@ -214,3 +214,83 @@ def envoyer_demande(request):
 
     # Si la méthode n'est pas POST, rediriger vers le formulaire
     return redirect('demande_tuteur')
+
+
+
+def suivi_tutorat(request):
+    """Affiche le formulaire de suivi de tutorat"""
+    return render(request, 'suiviTutorat.html')
+
+
+def envoyer_suivi(request):
+    """Traite l'envoi du formulaire via email"""
+    if request.method == 'POST':
+        # Récupération des données du formulaire
+        tuteur_name = request.POST.get('tutorName', '')
+
+        # Récupération des élèves
+        eleves_data = []
+        for key, value in request.POST.items():
+            if key.startswith('student[') and '][name]' in key:
+                index = key.split('[')[1].split(']')[0]
+                eleve = {
+                    'nom': value,
+                    'heures': request.POST.get(f'student[{index}][hours]', ''),
+                    'debut': request.POST.get(f'student[{index}][startDate]', ''),
+                    'fin': request.POST.get(f'student[{index}][endDate]', '')
+                }
+                eleves_data.append(eleve)
+
+        message_client = request.POST.get('message', '')
+
+        # Création du contexte pour le template d'email
+        context = {
+            'tuteur_name': tuteur_name,
+            'eleves': eleves_data,
+            'message': message_client,
+        }
+
+        try:
+            # Sujet de l'email
+            sujet = f"Suivi de tutorat - {tuteur_name}"
+
+            # Email au format HTML
+            html_message = render_to_string('email_suivi_tutorat.html', context)
+
+            # Version texte brut de l'email
+            texte_brut = strip_tags(html_message)
+
+            # Email de l'expéditeur
+            from_email = settings.DEFAULT_FROM_EMAIL
+
+            # Liste des destinataires
+            recipient_list = ["hassanec714@icloud.com"]
+
+            # Envoi de l'email
+            send_mail(
+                subject=sujet,
+                message=texte_brut,
+                from_email=from_email,
+                recipient_list=recipient_list,
+                html_message=html_message,
+                fail_silently=False
+            )
+
+            # Message de succès
+            messages.success(request, "Les informations de suivi ont été envoyées avec succès!")
+
+        except Exception as e:
+            # En cas d'erreur
+            messages.error(request,
+                           "Un problème est survenu lors de l'envoi de votre demande. Veuillez réessayer plus tard.")
+
+            # Log de l'erreur
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Erreur lors de l'envoi de l'email: {str(e)}")
+
+        # Redirection vers la page du formulaire
+        return redirect('suivi_tutorat')
+
+    # Si la méthode n'est pas POST, rediriger vers le formulaire
+    return redirect('suivi_tutorat')
