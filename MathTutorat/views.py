@@ -99,7 +99,7 @@ def apiContact(request):
     {message}
     """
 
-    recipient_list = ["hassanec714@icloud.com", "mathtutorsecondaire@gmail.com"]  # Remplace par les vraies adresses
+    recipient_list = ["mathtutorsecondaire@gmail.com"]  # Remplace par les vraies adresses
 
     try:
 
@@ -184,7 +184,7 @@ def envoyer_demande(request):
             from_email = settings.DEFAULT_FROM_EMAIL
 
             # Liste des destinataires
-            recipient_list = ["hassanec714@icloud.com","mathtutorsecondaire@gmail.com"]  # Votre adresse email pour recevoir les demandes
+            recipient_list = ["mathtutorsecondaire@gmail.com"]  # Votre adresse email pour recevoir les demandes
 
             # Envoi de l'email
             send_mail(
@@ -264,7 +264,7 @@ def envoyer_suivi(request):
             from_email = settings.DEFAULT_FROM_EMAIL
 
             # Liste des destinataires
-            recipient_list = ["hassanec714@icloud.com"]
+            recipient_list = []
 
             # Envoi de l'email
             send_mail(
